@@ -1,0 +1,5 @@
+# Remote source checker
+PyYAML>=6.0.2,<7
+
+# Full release-evidence and package validation
+jsonschema>=4.23,<5

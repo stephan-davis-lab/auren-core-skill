@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.4",
+  "release": {
+    "skill": "auren-core",
+    "skill_version": "1.1.2",
+    "release_date": "2026-08-15",
+    "evidence_status": "partial",
+    "release_scope": "Temporal release-evidence consistency polish: generated_at must not precede recorded evaluation runs; embedded Core v2.4 sources and Open Edition behavior unchanged."
+  },
+  "environment": {
+    "build_host": {
+      "type": "containerized build environment",
+      "operating_system": "Linux-6.18.35-x86_64-with-glibc2.41",
+      "python_version": "3.13.5"
+    },
+    "network_behavioral_host_available": false
+  },
+  "evaluation_runs": [
+    {
+      "id": "release-evidence-schema-validation",
+      "type": "schema_validation",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:04Z",
+      "command": "python scripts/validate_release_evidence.py .",
+      "result": {
+        "release_evidence_schema_validation": true,
+        "schema_draft": "JSON Schema 2020-12",
+        "schema_errors": 0
+      }
+    },
+    {
+      "id": "eval-inventory-validation",
+      "type": "inventory_validation",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:05Z",
+      "command": "python scripts/validate_evals.py .",
+      "result": {
+        "primary_eval_cases": 41,
+        "description_trigger_cases": 20,
+        "bilingual_parity": [
+          "runtime",
+          "integration",
+          "audit",
+          "crisis",
+          "nonactivation"
+        ],
+        "risk_parity_groups": [
+          "overload_stabilization",
+          "high_risk_medical_referral",
+          "privacy_minimize_identifiers",
+          "privacy_no_confidentiality_claim",
+          "certainty_loop",
+          "no_forced_positivity"
+        ],
+        "risk_paths_with_full_parity": 6,
+        "trigger_classes_with_full_parity": 10,
+        "release_evidence_schema_validation": true
+      }
+    },
+    {
+      "id": "package-validation",
+      "type": "static_validation",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:07Z",
+      "command": "python scripts/validate_package.py .",
+      "result": {
+        "required_files_checked": 52,
+        "warnings": 0,
+        "skill_md_lines": 231,
+        "security_invariants_validated": true,
+        "manifest_driven_version_checks": true,
+        "update_report_schema_validation": true,
+        "update_report_schema_version": "1.1",
+        "optional_semantic_catalog_validated": true,
+        "optional_semantic_reference_count": 5,
+        "external_release_hash_boundary_documented": true
+      }
+    },
+    {
+      "id": "security-invariant-regression",
+      "type": "unit_test",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:08Z",
+      "command": "python -m unittest scripts.tests.test_remote_source_checker -v",
+      "result": {
+        "tests_run": 32,
+        "failures": 0,
+        "errors": 0,
+        "url_security_cases": 9,
+        "redirect_security_cases": 8,
+        "security_invariants_validated": true,
+        "redirect_full_url_validation": true,
+        "allowed_port_policy_validated": true,
+        "userinfo_policy_validated": true,
+        "update_report_schema_validation": true,
+        "update_report_schema_version": "1.1",
+        "update_report_classification_branches_validated": 6
+      }
+    },
+    {
+      "id": "unit-tests",
+      "type": "unit_test",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:10Z",
+      "command": "python -m unittest discover -s scripts/tests -v",
+      "result": {
+        "tests_run": 53,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "id": "checksum-verification",
+      "type": "checksum_verification",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:13Z",
+      "command": "sha256sum -c CHECKSUMS.sha256",
+      "result": {
+        "entries_verified": 51,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "id": "source-and-boundary-design-review",
+      "type": "manual_review",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:13Z",
+      "scope": [
+        "embedded Core source byte identity",
+        "Open Edition boundary",
+        "optional semantic-reference non-bundling",
+        "license separation",
+        "external release integrity reference"
+      ],
+      "note": "Embedded Core v2.4 references were compared to the frozen v1.0.4 baseline and remain byte-identical. Optional semantic references are catalog metadata only and are not embedded or relicensed."
+    },
+    {
+      "id": "embedded-core-source-comparison",
+      "type": "static_validation",
+      "status": "passed",
+      "executed_at": "2026-08-15T21:18:13Z",
+      "command": "sha256sum references/auren-core-specs_v2.4.yaml references/auren-core-specs_v2.4.yaml.txt references/auren-core-logic_v2.4.md references/README_v2.4.md references/Guidance4AIsystems_v2.4.txt",
+      "result": {
+        "entries_verified": 5,
+        "embedded_core_sources_unchanged": true
+      }
+    },
+    {
+      "id": "remote-source-currentness-check",
+      "type": "static_validation",
+      "status": "partial",
+      "executed_at": "2026-08-15T21:18:13Z",
+      "command": "python scripts/check_remote_sources.py --registry REMOTE-SOURCE-REGISTRY.json --output source-update-report.json",
+      "scope": [
+        "allowlisted remote currentness detection",
+        "fixed source URLs only",
+        "no user content"
+      ],
+      "note": "The pre-release checker was executed from the build environment. Network retrieval was unavailable for all allowlisted sources, so every source reported fetch_unavailable. Per failure policy, embedded approved sources remain active and this build makes no fresh remote-currentness claim."
+    }
+  ],
+  "behavioral_model_evidence": {
+    "status": "not_run",
+    "hosts": [],
+    "reason": "No behavioral model or host execution was performed inside the build environment.",
+    "recommended_minimum_for_future_release_evidence": [
+      "run the full bilingual eval inventory on at least two supported hosts or models",
+      "record model and host names and versions",
+      "record pass, fail, and manual-review outcomes by case ID",
+      "retain representative outputs or secure references to them",
+      "document deviations and regression decisions"
+    ]
+  },
+  "known_limitations": [
+    "Static validation cannot prove host-level activation behavior.",
+    "The package contains expected behaviors, not executed model outputs.",
+    "Host safety mechanisms and local emergency-resource behavior vary by deployment.",
+    "Optional semantic references can only be used when the host has an appropriate external-access capability; unavailability must degrade to the Open Core."
+  ],
+  "generated_at": "2026-08-15T21:18:34Z"
+}

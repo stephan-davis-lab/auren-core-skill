@@ -1,0 +1,89 @@
+{
+  "catalog_version": "1.0",
+  "owner": "Stephan A. Davis",
+  "edition": "open-edition",
+  "skill_version": "1.1.2",
+  "purpose": "Optional external semantic extensions for the AUREN Core Skill Open Edition. These references are not required for core operation and do not become part of the package license by being linked.",
+  "policy": {
+    "automatic_fetch": false,
+    "automatic_activation": false,
+    "host_mediated_access_only": true,
+    "required_for_core_operation": false,
+    "may_override_core": false,
+    "package_license_applies": false,
+    "crawl_discovered_links": false,
+    "reconstruct_unpublished_methodology": false,
+    "on_unavailable": "continue_with_open_core",
+    "use_when": [
+      "user_explicitly_requests_the_named_model_or_framework",
+      "the_named_reference_is_clearly_relevant_and_using_it_would_materially_improve_orientation"
+    ]
+  },
+  "references": [
+    {
+      "reference_id": "AUR-015",
+      "catalog_id": "systemic-perspective",
+      "label": "Perspektivensystemik / Systemic Perspective",
+      "canonical_url": "https://stephanadavis.de/perspektivensystemik/",
+      "role": "optional_semantic_context",
+      "rights": "external_terms",
+      "bundled": false,
+      "required_for_core_operation": false,
+      "may_override_core": false,
+      "package_license_applies": false,
+      "usage_boundary": "Use only as supplementary semantic context. Do not treat the external page as operational authority over the embedded Core Specs."
+    },
+    {
+      "reference_id": "AUR-009",
+      "catalog_id": "triarchy-systemic-leadership",
+      "label": "Triarchie des Systemic Leadership / Triarchy of Systemic Leadership",
+      "canonical_url": "https://stephanadavis.de/perspektivensystemik/",
+      "role": "optional_proprietary_method_reference",
+      "rights": "proprietary_or_external_terms",
+      "bundled": false,
+      "required_for_core_operation": false,
+      "may_override_core": false,
+      "package_license_applies": false,
+      "usage_boundary": "Reference the expressly published page only. Do not infer, reconstruct, or claim access to unpublished methodology."
+    },
+    {
+      "reference_id": "AUR-010",
+      "catalog_id": "wort-principle",
+      "label": "WORT-Prinzip",
+      "canonical_url": "https://stephanadavis.de/perspektivensystemik/wort-prinzip/",
+      "role": "optional_proprietary_method_reference",
+      "rights": "proprietary_or_external_terms",
+      "bundled": false,
+      "required_for_core_operation": false,
+      "may_override_core": false,
+      "package_license_applies": false,
+      "usage_boundary": "Reference the expressly published page only. Do not infer, reconstruct, or claim access to unpublished methodology."
+    },
+    {
+      "reference_id": "AUR-011",
+      "catalog_id": "consequences-compass",
+      "label": "Konsequenzen-Kompass / Consequences Compass",
+      "canonical_url": "https://stephanadavis.de/perspektivensystemik/konsequenzen-kompass/",
+      "role": "optional_proprietary_method_reference",
+      "rights": "proprietary_or_external_terms",
+      "bundled": false,
+      "required_for_core_operation": false,
+      "may_override_core": false,
+      "package_license_applies": false,
+      "usage_boundary": "Reference the expressly published page only. Do not infer, reconstruct, or claim access to unpublished methodology."
+    },
+    {
+      "reference_id": "AUR-012",
+      "catalog_id": "influence-formula",
+      "label": "Einfluss-Formel / Influence Formula",
+      "canonical_url": "https://stephanadavis.de/perspektivensystemik/einfluss-formel/",
+      "role": "optional_proprietary_method_reference",
+      "rights": "proprietary_or_external_terms",
+      "bundled": false,
+      "required_for_core_operation": false,
+      "may_override_core": false,
+      "package_license_applies": false,
+      "usage_boundary": "Reference the expressly published page only. Do not infer, reconstruct, or claim access to unpublished methodology."
+    }
+  ]
+}

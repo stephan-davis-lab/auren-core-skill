@@ -1,0 +1,477 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stephanadavis.de/schemas/auren-core-release-evidence-v1.4.schema.json",
+  "title": "AUREN Core Release Evidence",
+  "description": "Complete structural schema for versioned AUREN Core release-evidence records, including security-invariant and high-risk language-parity evidence.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "release",
+    "environment",
+    "evaluation_runs",
+    "behavioral_model_evidence",
+    "known_limitations",
+    "generated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.4"
+    },
+    "release": {
+      "$ref": "#/$defs/release"
+    },
+    "environment": {
+      "$ref": "#/$defs/environment"
+    },
+    "evaluation_runs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evaluation_run"
+      }
+    },
+    "behavioral_model_evidence": {
+      "$ref": "#/$defs/behavioral_model_evidence"
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$"
+    },
+    "release": {
+      "type": "object",
+      "required": [
+        "skill",
+        "skill_version",
+        "release_date",
+        "evidence_status",
+        "release_scope"
+      ],
+      "properties": {
+        "skill": {
+          "const": "auren-core"
+        },
+        "skill_version": {
+          "$ref": "#/$defs/semver"
+        },
+        "release_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "evidence_status": {
+          "enum": [
+            "complete",
+            "partial",
+            "draft"
+          ]
+        },
+        "release_scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "build_host": {
+      "type": "object",
+      "required": [
+        "type",
+        "operating_system",
+        "python_version"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operating_system": {
+          "type": "string",
+          "minLength": 1
+        },
+        "python_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "build_host",
+        "network_behavioral_host_available"
+      ],
+      "properties": {
+        "build_host": {
+          "$ref": "#/$defs/build_host"
+        },
+        "network_behavioral_host_available": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evaluation_result": {
+      "type": "object",
+      "properties": {
+        "primary_eval_cases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "description_trigger_cases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bilingual_parity": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "trigger_classes_with_full_parity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_evidence_schema_validation": {
+          "type": "boolean"
+        },
+        "schema_draft": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema_errors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required_files_checked": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warnings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skill_md_lines": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tests_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "errors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "entries_verified": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "risk_parity_groups": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "risk_paths_with_full_parity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "security_invariants_validated": {
+          "type": "boolean"
+        },
+        "url_security_cases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "redirect_security_cases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manifest_driven_version_checks": {
+          "type": "boolean"
+        },
+        "update_report_schema_validation": {
+          "type": "boolean"
+        },
+        "update_report_schema_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+$"
+        },
+        "redirect_full_url_validation": {
+          "type": "boolean"
+        },
+        "allowed_port_policy_validated": {
+          "type": "boolean"
+        },
+        "optional_semantic_catalog_validated": {
+          "type": "boolean"
+        },
+        "optional_semantic_reference_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "userinfo_policy_validated": {
+          "type": "boolean"
+        },
+        "update_report_classification_branches_validated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "external_release_hash_boundary_documented": {
+          "type": "boolean"
+        },
+        "embedded_core_sources_unchanged": {
+          "type": "boolean"
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false
+    },
+    "evaluation_run": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "status",
+        "executed_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "type": {
+          "enum": [
+            "static_validation",
+            "unit_test",
+            "inventory_validation",
+            "schema_validation",
+            "checksum_verification",
+            "behavioral_eval",
+            "manual_review"
+          ]
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "partial",
+            "not_run"
+          ]
+        },
+        "executed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result": {
+          "$ref": "#/$defs/evaluation_result"
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "static_validation",
+                  "unit_test",
+                  "inventory_validation",
+                  "schema_validation",
+                  "checksum_verification"
+                ]
+              },
+              "status": {
+                "const": "passed"
+              }
+            },
+            "required": [
+              "type",
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "command",
+              "result"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "manual_review"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "scope",
+              "note"
+            ]
+          }
+        }
+      ]
+    },
+    "behavioral_host": {
+      "type": "object",
+      "required": [
+        "host_name",
+        "host_version",
+        "model_name",
+        "model_version",
+        "executed_at",
+        "cases_run",
+        "passed",
+        "failed",
+        "manual_reviewed"
+      ],
+      "properties": {
+        "host_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "host_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cases_run": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "passed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manual_reviewed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidence_reference": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "behavioral_model_evidence": {
+      "type": "object",
+      "required": [
+        "status",
+        "hosts",
+        "reason",
+        "recommended_minimum_for_future_release_evidence"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "complete",
+            "partial",
+            "not_run"
+          ]
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/behavioral_host"
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recommended_minimum_for_future_release_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "not_run"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "hosts": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

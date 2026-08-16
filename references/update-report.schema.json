@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stephanadavis.de/schemas/auren-core-source-update-report-v1.1.json",
+  "title": "AUREN Core Source Update Report",
+  "description": "Complete structural schema for reports emitted by the AUREN Core remote-source checker.",
+  "type": "object",
+  "required": [
+    "report_version",
+    "checked_at",
+    "registry_version",
+    "automatic_activation",
+    "privacy",
+    "sources"
+  ],
+  "properties": {
+    "report_version": {
+      "const": "1.1"
+    },
+    "checked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "registry_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "automatic_activation": {
+      "const": false
+    },
+    "privacy": {
+      "$ref": "#/$defs/privacy"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source_result"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "nullable_string": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "privacy": {
+      "type": "object",
+      "required": [
+        "user_content_sent",
+        "request_method",
+        "crawl_discovered_links"
+      ],
+      "properties": {
+        "user_content_sent": {
+          "const": false
+        },
+        "request_method": {
+          "const": "GET"
+        },
+        "crawl_discovered_links": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "baseline": {
+      "type": "object",
+      "required": [
+        "version",
+        "sha256",
+        "sha256_normalized"
+      ],
+      "properties": {
+        "version": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256_normalized": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "remote": {
+      "type": "object",
+      "required": [
+        "version",
+        "sha256",
+        "sha256_normalized",
+        "license"
+      ],
+      "properties": {
+        "version": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sha256_normalized": {
+          "$ref": "#/$defs/sha256"
+        },
+        "license": {
+          "$ref": "#/$defs/nullable_string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "retrieval_success_or_invalid": {
+      "type": "object",
+      "required": [
+        "url",
+        "status",
+        "bytes",
+        "sha256",
+        "sha256_normalized",
+        "version",
+        "license",
+        "validation_error"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "status": {
+          "enum": [
+            "success",
+            "invalid"
+          ]
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sha256_normalized": {
+          "$ref": "#/$defs/sha256"
+        },
+        "version": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "license": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "validation_error": {
+          "$ref": "#/$defs/nullable_string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "retrieval_unavailable": {
+      "type": "object",
+      "required": [
+        "url",
+        "status",
+        "error"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "status": {
+          "const": "unavailable"
+        },
+        "error": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "retrieval": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/retrieval_success_or_invalid"
+        },
+        {
+          "$ref": "#/$defs/retrieval_unavailable"
+        }
+      ]
+    },
+    "source_result": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "role",
+        "fetch_status",
+        "baseline",
+        "retrievals",
+        "automatic_activation",
+        "classification",
+        "operational_impact",
+        "license_impact",
+        "required_evals",
+        "recommendation"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fetch_status": {
+          "enum": [
+            "success",
+            "unavailable",
+            "invalid"
+          ]
+        },
+        "baseline": {
+          "$ref": "#/$defs/baseline"
+        },
+        "retrievals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/retrieval"
+          }
+        },
+        "automatic_activation": {
+          "const": false
+        },
+        "remote": {
+          "$ref": "#/$defs/remote"
+        },
+        "classification": {
+          "enum": [
+            "no_change",
+            "metadata_only",
+            "semantic_context_update",
+            "documentation_update",
+            "operational_compatible_change",
+            "operational_breaking_change",
+            "license_or_rights_change",
+            "mirror_divergence",
+            "invalid_source",
+            "fetch_unavailable",
+            "ambiguous_change"
+          ]
+        },
+        "operational_impact": {
+          "enum": [
+            "none",
+            "review_required",
+            "blocked",
+            "unknown"
+          ]
+        },
+        "license_impact": {
+          "enum": [
+            "none_detected",
+            "review_required",
+            "unknown"
+          ]
+        },
+        "required_evals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "recommendation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

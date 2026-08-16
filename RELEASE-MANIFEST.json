@@ -1,0 +1,122 @@
+{
+  "manifest_version": "1.6",
+  "package_name": "auren-core",
+  "display_name": "AUREN Core Skill \u2014 Open Edition",
+  "skill_version": "1.1.2",
+  "release_date": "2026-08-15",
+  "owner": "Stephan A. Davis",
+  "edition": "open-edition",
+  "language_of_package_files": "English",
+  "core_specs_version": "2.4",
+  "core_logic_version": "2.4",
+  "guidance_version": "2.4",
+  "ai_index_baseline": "6.4",
+  "remote_registry_version": "1.4",
+  "rights_matrix_version": "1.3",
+  "functional_handoff_baseline": "1.1",
+  "licenses": {
+    "content": "CC-BY-SA-4.0",
+    "software": "MIT",
+    "brand_and_proprietary": "separate_rights"
+  },
+  "modes": [
+    "runtime",
+    "integration",
+    "audit"
+  ],
+  "remote_update_policy": "detect_and_report_only; no automatic activation; human approval required",
+  "privacy_policy": "data_minimization; no user content in remote checks or update reports",
+  "excluded_material": [
+    "AI Index snapshot",
+    "proprietary methodologies",
+    "complete ACR Attendancy methodology",
+    "mentoring/practitioner/training/workbook/certification materials",
+    "public AUREN CustomGPT configuration and knowledge base",
+    "internal governance",
+    "real user conversations",
+    "three additional reflection questions pending license confirmation"
+  ],
+  "validation_commands": [
+    "python scripts/validate_package.py .",
+    "python scripts/validate_release_evidence.py .",
+    "python scripts/validate_evals.py .",
+    "python -m unittest discover -s scripts/tests -v",
+    "sha256sum -c CHECKSUMS.sha256"
+  ],
+  "release_type": "patch",
+  "release_focus": "Release-evidence temporal consistency and regression protection; no embedded Core behavior changes",
+  "embedded_source_changes": false,
+  "evaluation": {
+    "primary_inventory": "evals/evals.json",
+    "description_trigger_inventory": "evals/description-trigger-evals.json",
+    "bilingual_parity": true,
+    "parity_scope": [
+      "runtime",
+      "integration",
+      "audit",
+      "crisis",
+      "nonactivation",
+      "overload_stabilization",
+      "high_risk_medical_referral",
+      "privacy_minimize_identifiers",
+      "privacy_no_confidentiality_claim",
+      "certainty_loop",
+      "no_forced_positivity"
+    ],
+    "description_trigger_suite": true,
+    "trigger_class_count": 10,
+    "full_trigger_class_bilingual_parity": true,
+    "release_evidence_schema": "evals/release-evidence.schema.json",
+    "release_evidence_schema_version": "1.4",
+    "release_evidence_record": "evals/release-evidence-v1.1.2.json",
+    "full_release_evidence_schema_validation": true,
+    "behavioral_host_evidence_status": "not_run",
+    "high_risk_path_bilingual_parity": true,
+    "high_risk_path_count": 6,
+    "risk_parity_groups": [
+      "overload_stabilization",
+      "high_risk_medical_referral",
+      "privacy_minimize_identifiers",
+      "privacy_no_confidentiality_claim",
+      "certainty_loop",
+      "no_forced_positivity"
+    ]
+  },
+  "security_assurance": {
+    "documented_invariants_registry": true,
+    "exact_allowlist_validation": true,
+    "url_validation_unit_tests": true,
+    "redirect_policy_unit_tests": true,
+    "registry_mutation_regression_test": true,
+    "enforced_hostnames": [
+      "stephanadavis.de"
+    ],
+    "redirect_full_url_validation": true,
+    "allowed_https_ports": [
+      443
+    ],
+    "update_report_schema_version": "1.1",
+    "update_report_full_schema_validation": true,
+    "url_userinfo_rejected": true,
+    "external_release_hash_boundary_documented": true,
+    "update_report_classification_regression_coverage": 6
+  },
+  "version_alignment_policy": "RELEASE-MANIFEST.json is the package validation source for release, registry, rights-matrix, optional-semantic-catalog, and evidence versions.",
+  "optional_semantic_reference_catalog": "OPTIONAL-SEMANTIC-REFERENCES.json",
+  "optional_semantic_reference_catalog_version": "1.0",
+  "semantic_extension_assurance": {
+    "catalog_version": "1.0",
+    "catalog_required_for_validation": true,
+    "optional_reference_count": 5,
+    "automatic_fetch": false,
+    "required_for_core_operation": false,
+    "may_override_core": false,
+    "package_license_applies": false,
+    "reconstruct_unpublished_methodology": false
+  },
+  "validated_user_languages": [
+    "English",
+    "German"
+  ],
+  "language_behavior": "respond_in_user_language_when_capable; validated_quality_baseline_en_de"
+}

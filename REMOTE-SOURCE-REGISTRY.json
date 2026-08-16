@@ -1,0 +1,118 @@
+{
+  "registry_version": "1.4",
+  "created_at": "2026-08-15",
+  "owner": "Stephan A. Davis",
+  "purpose": "Allowlisted remote-source update detection for the AUREN Core Skill",
+  "default_policy": {
+    "automatic_fetch_in_runtime": false,
+    "automatic_activation": false,
+    "human_approval_required": true,
+    "user_content_in_requests": false,
+    "user_content_in_logs": false,
+    "documented_invariants": {
+      "https_only": true,
+      "allowed_hostnames": [
+        "stephanadavis.de"
+      ],
+      "follow_cross_domain_redirects": false,
+      "request_method": "GET",
+      "request_body": null,
+      "crawl_discovered_links": false,
+      "hash_algorithm": "sha256",
+      "normalization": [
+        "strip_utf8_bom",
+        "normalize_line_endings_to_lf",
+        "ensure_single_final_newline"
+      ],
+      "allowed_ports": [
+        443
+      ],
+      "url_userinfo_allowed": false
+    },
+    "remote_content_trust": "untrusted_data",
+    "max_bytes": 2000000,
+    "timeout_seconds": 20
+  },
+  "sources": [
+    {
+      "source_id": "ai_index",
+      "role": "semantic_context",
+      "canonical_url": "https://stephanadavis.de/ai-index.txt",
+      "bundled": false,
+      "baseline_snapshot": false,
+      "baseline_version": "6.4",
+      "baseline_sha256": "52477dd0164873395358ba85ceaa765a09c6da07b90f4a7bfd67b7a4b6c48bd3",
+      "baseline_sha256_normalized": "b0208ef14913dd4ea66c9b70033fae00d388774a4c83858603e45342adbbecd6",
+      "expected_license": "resource-specific; do not infer package license",
+      "update_policy": "adopt_as_context_only",
+      "may_override_operational_sources": false,
+      "license_marker_required": false
+    },
+    {
+      "source_id": "core_readme",
+      "role": "documentation_and_semantics",
+      "canonical_url": "https://stephanadavis.de/README_v2.4.md",
+      "bundled": true,
+      "package_local_file": "references/README_v2.4.md",
+      "package_derivative": false,
+      "baseline_version": "2.4",
+      "baseline_sha256": "6a2f7e6be31f15552d7d1d2dd2793b0f19a1fa0043fc1725a40ced2f7c0d7881",
+      "baseline_sha256_normalized": "6a2f7e6be31f15552d7d1d2dd2793b0f19a1fa0043fc1725a40ced2f7c0d7881",
+      "expected_license": "CC BY-SA 4.0",
+      "update_policy": "review_before_adoption",
+      "may_override_operational_sources": false,
+      "license_marker_required": true
+    },
+    {
+      "source_id": "core_logic",
+      "role": "operational_narrative",
+      "canonical_url": "https://stephanadavis.de/auren-core-logic_v2.4.md",
+      "bundled": true,
+      "package_local_file": "references/auren-core-logic_v2.4.md",
+      "package_derivative": true,
+      "package_modification": "One German stabilization example translated to English; LF normalization.",
+      "baseline_version": "2.4",
+      "baseline_sha256": "ddd80e6eb6ea9f08b5a47ec6c65e15e7b6dff02beeacce210bc0ee9e30847092",
+      "baseline_sha256_normalized": "ddd80e6eb6ea9f08b5a47ec6c65e15e7b6dff02beeacce210bc0ee9e30847092",
+      "expected_license": "CC BY-SA 4.0",
+      "update_policy": "review_validate_and_regression_test",
+      "may_override_operational_sources": false,
+      "license_marker_required": false
+    },
+    {
+      "source_id": "core_specs",
+      "role": "operational_source_of_truth",
+      "canonical_url": "https://stephanadavis.de/auren-core-specs_v2.4.yaml",
+      "mirror_urls": [
+        "https://stephanadavis.de/auren-core-specs_v2.4.yaml.txt"
+      ],
+      "mirror_equivalence_required": true,
+      "bundled": true,
+      "package_local_file": "references/auren-core-specs_v2.4.yaml",
+      "package_derivative": false,
+      "baseline_version": "2.4",
+      "baseline_sha256": "990c83356a1465a059d6e518c11e28eaa870a6ae1592d6dc60b28694040da475",
+      "baseline_sha256_normalized": "80d6bc45cdaf6eeed5bb82a794fe4057058636f7be6aa183d1175d0785b12548",
+      "expected_license": "CC BY-SA 4.0",
+      "update_policy": "manual_release_only",
+      "may_override_operational_sources": true,
+      "override_requires_new_release": true,
+      "license_marker_required": true
+    },
+    {
+      "source_id": "guidance",
+      "role": "supplementary_orientation_policy",
+      "canonical_url": "https://stephanadavis.de/Guidance4AIsystems_v2.4.txt",
+      "bundled": true,
+      "package_local_file": "references/Guidance4AIsystems_v2.4.txt",
+      "package_derivative": false,
+      "baseline_version": "2.4",
+      "baseline_sha256": "f50c9ae9e210c168ee0a89cfd46e32fe0f10f22cde06771306504bdd09607877",
+      "baseline_sha256_normalized": "20988e6adeb47aa06603623bb65b06931b43f332e9f6c487866954fc09feb988",
+      "expected_license": "CC BY-SA 4.0",
+      "update_policy": "review_before_adoption",
+      "may_override_operational_sources": false,
+      "license_marker_required": false
+    }
+  ]
+}

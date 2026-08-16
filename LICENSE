@@ -1,0 +1,14 @@
+AUREN Core Skill 1.1.2 uses multiple licenses.
+
+1. Content, documentation, embedded reference texts, examples, and content evals:
+   Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+   See LICENSES/CC-BY-SA-4.0.txt.
+
+2. Python scripts and test code:
+   MIT License.
+   See LICENSES/MIT.txt.
+
+3. Names, official edition identity, trademarks, optional linked proprietary models,
+   external resources, and materials not expressly licensed above:
+   not licensed by proximity. See BRAND-AND-NAME-NOTICE.md and
+   SOURCE-MATERIAL-NOTICES.md.
