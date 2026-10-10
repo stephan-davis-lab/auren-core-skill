@@ -29,18 +29,18 @@ class SourceCheckerTests(unittest.TestCase):
         self.allowed = set(checker.ALLOWED_HOSTNAMES)
 
     def _write_complete_fixtures(self, directory: Path) -> None:
-        (directory / "ai_index.bin").write_bytes(b'Version: "6.4"\n')
+        (directory / "ai_index.bin").write_bytes(f'Version: "{self.sources["ai_index"]["baseline_version"]}"\n'.encode())
         (directory / "core_readme.bin").write_bytes(
-            (ROOT / "references/README_v2.4.md").read_bytes()
+            (ROOT / self.sources["core_readme"]["package_local_file"]).read_bytes()
         )
         (directory / "core_logic.bin").write_bytes(
-            (ROOT / "references/auren-core-logic_v2.4.md").read_bytes()
+            (ROOT / self.sources["core_logic"]["package_local_file"]).read_bytes()
         )
-        specs = (ROOT / "references/auren-core-specs_v2.4.yaml").read_bytes()
+        specs = (ROOT / self.sources["core_specs"]["package_local_file"]).read_bytes()
         (directory / "core_specs.bin").write_bytes(specs)
         (directory / "core_specs.mirror1.bin").write_bytes(specs)
         (directory / "guidance.bin").write_bytes(
-            (ROOT / "references/Guidance4AIsystems_v2.4.txt").read_bytes()
+            (ROOT / self.sources["guidance"]["package_local_file"]).read_bytes()
         )
 
 
@@ -82,7 +82,7 @@ class SourceCheckerTests(unittest.TestCase):
         source = self.sources["core_specs"]
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
-            base = (ROOT / "references/auren-core-specs_v2.4.yaml").read_bytes()
+            base = (ROOT / self.sources["core_specs"]["package_local_file"]).read_bytes()
             (directory / "core_specs.bin").write_bytes(base)
             (directory / "core_specs.mirror1.bin").write_bytes(base + b"\n# divergence\n")
             result = checker.check_source(source, self.policy, directory)
@@ -93,7 +93,7 @@ class SourceCheckerTests(unittest.TestCase):
         source = self.sources["core_readme"]
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
-            (directory / "core_readme.bin").write_bytes((ROOT / "references/README_v2.4.md").read_bytes())
+            (directory / "core_readme.bin").write_bytes((ROOT / self.sources["core_readme"]["package_local_file"]).read_bytes())
             result = checker.check_source(source, self.policy, directory)
             self.assertEqual(result["classification"], "no_change")
 
@@ -223,14 +223,14 @@ class SourceCheckerTests(unittest.TestCase):
     def test_generated_report_branch_no_change_validates(self):
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
-            (directory / "core_readme.bin").write_bytes((ROOT / "references/README_v2.4.md").read_bytes())
+            (directory / "core_readme.bin").write_bytes((ROOT / self.sources["core_readme"]["package_local_file"]).read_bytes())
             report = self._validate_report(self._single_source_registry("core_readme"), directory)
             self.assertEqual(report["sources"][0]["classification"], "no_change")
 
     def test_generated_report_branch_operational_compatible_change_validates(self):
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
-            data = (ROOT / "references/auren-core-logic_v2.4.md").read_bytes() + b"\n<!-- synthetic compatible change -->\n"
+            data = (ROOT / self.sources["core_logic"]["package_local_file"]).read_bytes() + b"\n<!-- synthetic compatible change -->\n"
             (directory / "core_logic.bin").write_bytes(data)
             report = self._validate_report(self._single_source_registry("core_logic"), directory)
             self.assertEqual(report["sources"][0]["classification"], "operational_compatible_change")
@@ -244,7 +244,7 @@ class SourceCheckerTests(unittest.TestCase):
     def test_generated_report_branch_mirror_divergence_validates(self):
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
-            base = (ROOT / "references/auren-core-specs_v2.4.yaml").read_bytes()
+            base = (ROOT / self.sources["core_specs"]["package_local_file"]).read_bytes()
             (directory / "core_specs.bin").write_bytes(base)
             (directory / "core_specs.mirror1.bin").write_bytes(base + b"\n# synthetic divergence\n")
             report = self._validate_report(self._single_source_registry("core_specs"), directory)
@@ -265,7 +265,7 @@ class SourceCheckerTests(unittest.TestCase):
             source["baseline_sha256_normalized"] = "0" * 64
             registry = copy.deepcopy(self.registry)
             registry["sources"] = [source]
-            data = b"# AUREN Core Specs & Logic (v2.4)\nVersion: 2.4\nNo license marker here.\n"
+            data = b"# AUREN Core Specs & Logic (v2.5)\nVersion: 2.5\nNo license marker here.\n"
             (directory / "core_readme.bin").write_bytes(data)
             report = self._validate_report(registry, directory)
             self.assertEqual(report["sources"][0]["classification"], "license_or_rights_change")

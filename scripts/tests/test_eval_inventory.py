@@ -40,8 +40,13 @@ class EvalInventoryTests(unittest.TestCase):
     def test_behavioral_evidence_does_not_claim_unrun_hosts(self):
         evidence = validate_evals.load_json(self.evidence_path)
         behavioral = evidence["behavioral_model_evidence"]
-        self.assertEqual(behavioral["status"], "not_run")
-        self.assertEqual(behavioral["hosts"], [])
+        if behavioral["status"] == "not_run":
+            self.assertEqual(behavioral["hosts"], [])
+        else:
+            self.assertTrue(behavioral["hosts"])
+            for host in behavioral["hosts"]:
+                self.assertEqual(host["cases_run"], host["passed"] + host["failed"] + host["manual_reviewed"])
+                self.assertTrue((ROOT / host["evidence_reference"]).is_file())
 
     def test_every_trigger_class_has_exact_bilingual_parity(self):
         triggers = validate_evals.load_json(ROOT / "evals/description-trigger-evals.json")

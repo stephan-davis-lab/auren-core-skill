@@ -54,7 +54,7 @@ class PackageValidationTests(unittest.TestCase):
             skill_path = copied / "SKILL.md"
             skill_path.write_text(
                 skill_path.read_text(encoding="utf-8").replace(
-                    'version: "1.1.2"', 'version: "9.9.9"', 1
+                    'version: "1.2.5"', 'version: "9.9.9"', 1
                 ),
                 encoding="utf-8",
             )
