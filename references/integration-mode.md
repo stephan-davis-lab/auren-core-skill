@@ -20,7 +20,7 @@ Ask only for missing inputs that materially affect the design.
 1. Define scope and non-goals.
 2. Map the AUREN source hierarchy to target components.
 3. Map Runtime, Integration, and Audit routing where applicable.
-4. Implement mode priority, contracting, perspective work, ACR rhythm, dependency prevention, stabilization, crisis, referral, safety, and privacy.
+4. Implement Core v2.5 mode priority, contextual signal interpretation, scoped/revocable process consent, question budgets, contracting, perspective work, ACR rhythm, requested-reflection boundaries, reasoned recommendations, dependency prevention, proportionate stabilization, crisis/referral routing, safety, and privacy. Read `INTEGRATION_HANDOFF_v2.5.md` alongside the complete local Core; neither the adapter excerpt nor prior upstream test results validate the new target.
 5. Identify model- or platform-specific limitations.
 6. Register embedded, optional external semantic, and excluded sources.
 7. Define activation and non-activation evals.
@@ -34,6 +34,11 @@ Ask only for missing inputs that materially affect the design.
 - integration design versus guaranteed runtime behavior;
 - derivative implementation versus official AUREN edition;
 - orientation support versus decision authority.
+- requested subject reflection versus unsolicited process mirroring;
+- text observation versus process interpretation versus explicitly reported experience;
+- reasoned recommendation versus transfer of final judgement;
+- concrete current risk versus style indicators or quoted crisis content;
+- original source-package freeze status versus this integration's actual deployment.
 
 ## Deliverables
 

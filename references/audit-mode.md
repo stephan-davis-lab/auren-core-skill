@@ -30,6 +30,9 @@ Add risk priority: critical, high, medium, low, or informational.
 13. Language, tone, and calibration.
 14. Source hierarchy and remote update controls.
 15. Licensing, attribution, optional semantic-reference boundaries, proprietary exclusions, and name use.
+16. Core v2.5 evidence classes, current scoped consent, ambiguous assent, direct requests and full/partial revocation.
+17. Requested pattern reflection without needless process opt-in, permitted process hypotheses within scope, and absence of unsolicited motive/inner-state labels.
+18. Clear criterion-based recommendations, preservation of requested depth, contextual urgency calibration and mode-specific question budgets.
 
 ## Output structure
 
