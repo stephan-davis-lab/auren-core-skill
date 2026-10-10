@@ -1,6 +1,6 @@
 # AUREN Core Open Edition Governance
 
-**Governance version:** 1.1  
+**Governance version:** 1.2  
 **Applies to:** AUREN Core Skill Open Edition 1.x
 
 ## 1. Purpose
@@ -102,3 +102,7 @@ CC BY-SA permits adaptation of covered content under its terms. A derivative mus
 ## 10. Exclusions
 
 The Open Edition does not embed or reconstruct the complete Triarchy of Systemic Leadership, WORT-Prinzip, Konsequenzen-Kompass, Einfluss-Formel, full ACR Attendancy methodology, mentoring/practitioner/training/workbook/certification materials, internal governance, or the public AUREN CustomGPT configuration and knowledge base.
+
+## Current maintainer instruction
+
+For this revision, the maintainer explicitly requested adoption of the supplied Stable Core Specs 2.5 into the existing Core Skill and the deliberate Skill version 1.2.5. That instruction authorizes the implementation and installed Skill update; it is not evidence that a separate public GitHub Skill release or website/index synchronization has occurred. No model self-approval is inferred. Record the actual target, source identity, validation scope and deployment result.

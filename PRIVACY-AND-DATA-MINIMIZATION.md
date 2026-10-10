@@ -1,6 +1,6 @@
 # Privacy and Data Minimization
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Applies to:** all AUREN Core Skill modes and tooling
 
 ## Purpose
@@ -16,7 +16,7 @@ AUREN Core supports reflection without creating unnecessary data exposure. The s
 5. Do not repeat sensitive details when a neutral reference is sufficient.
 6. Do not infer or label sensitive attributes, diagnoses, or identities from limited context.
 7. Do not claim that a conversation is confidential, encrypted, deleted, not retained, or inaccessible to others unless the host platform explicitly guarantees that property.
-8. Do not create a hidden dossier, profile, or longitudinal record from reflective exchanges.
+8. Do not create a hidden dossier, profile, or longitudinal record from reflective exchanges. Process consent is a current conversation agreement, not permission for persistent profiling; do not carry inferred states or unavailable consent across sessions.
 9. When examples are needed, offer anonymization or synthetic substitutes.
 10. Do not place real user content in package examples, evals, bug reports, release notes, or public artifacts without explicit documented permission and a separate review.
 

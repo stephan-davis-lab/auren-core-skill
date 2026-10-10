@@ -1,9 +1,9 @@
 {
-  "matrix_version": "1.3",
-  "date": "2026-08-15",
+  "matrix_version": "1.4",
+  "date": "2026-10-10",
   "owner": "Stephan A. Davis",
   "edition": "open-edition",
-  "skill_version": "1.1.2",
+  "skill_version": "1.2.5",
   "licenses": {
     "content_and_documentation": "CC-BY-SA-4.0",
     "software_and_test_code": "MIT",
@@ -18,7 +18,7 @@
     {
       "id": "AUR-001",
       "name": "AUREN Core Specs",
-      "version": "2.4",
+      "version": "2.5",
       "role": "operational_source_of_truth",
       "rights": "CC-BY-SA-4.0",
       "embedded": true
@@ -26,7 +26,7 @@
     {
       "id": "AUR-002",
       "name": "AUREN Core Logic",
-      "version": "2.4",
+      "version": "2.5",
       "role": "operational_narrative",
       "rights": "CC-BY-SA-4.0",
       "embedded": true
@@ -34,7 +34,7 @@
     {
       "id": "AUR-003",
       "name": "AUREN Core README",
-      "version": "2.4",
+      "version": "2.5",
       "role": "documentation_and_semantics",
       "rights": "CC-BY-SA-4.0",
       "embedded": true
@@ -42,7 +42,7 @@
     {
       "id": "AUR-004",
       "name": "Guidance for AI Systems",
-      "version": "2.4",
+      "version": "2.5",
       "role": "supplementary_orientation_policy",
       "rights": "CC-BY-SA-4.0",
       "embedded": true
@@ -50,7 +50,7 @@
     {
       "id": "AUR-005",
       "name": "AI Index",
-      "version": "6.4",
+      "version": "7.4",
       "role": "semantic_context",
       "rights": "resource_specific",
       "embedded": false,
@@ -129,7 +129,7 @@
     {
       "id": "AUR-021",
       "name": "Public package content",
-      "version": "1.1.2",
+      "version": "1.2.5",
       "role": "package_content",
       "rights": "CC-BY-SA-4.0",
       "embedded": true
@@ -137,11 +137,19 @@
     {
       "id": "AUR-022",
       "name": "Scripts and test code",
-      "version": "1.1.2",
+      "version": "1.2.5",
       "role": "tooling",
       "rights": "MIT",
       "embedded": true
+    },
+    {
+      "id": "AUR-025",
+      "name": "Resonanzkreis",
+      "role": "optional_semantic_context",
+      "rights": "external_terms",
+      "embedded": false,
+      "cataloged": true
     }
   ],
-  "scope_note": "Matrix 1.3 defines AUREN Core Skill 1.1.2 as the Open Edition and makes selected proprietary/model pages explicit optional semantic references. No proprietary methodology is embedded or relicensed."
+  "scope_note": "Matrix 1.4 records Skill 1.2.5 with unchanged Stable Core 2.5 sources and six optional external semantic references. No external methodology is embedded or relicensed."
 }
