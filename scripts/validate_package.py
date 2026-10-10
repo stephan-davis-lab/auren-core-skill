@@ -46,11 +46,8 @@ REQUIRED_STATIC = [
     "LICENSES/CC-BY-SA-4.0.txt",
     "LICENSES/MIT.txt",
     "LICENSES/README.md",
-    "references/auren-core-specs_v2.4.yaml",
-    "references/auren-core-specs_v2.4.yaml.txt",
-    "references/auren-core-logic_v2.4.md",
-    "references/README_v2.4.md",
-    "references/Guidance4AIsystems_v2.4.txt",
+    "references/INTEGRATION_HANDOFF_v2.5.md",
+    "references/NOTICE_v2.5.md",
     "references/runtime-contract.md",
     "references/integration-mode.md",
     "references/audit-mode.md",
@@ -102,8 +99,8 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
     warnings: list[str] = []
     stats = {"required_files": 0, "skill_md_lines": 0}
 
-    if root.name != "auren-core":
-        fail(errors, "Package directory must be named 'auren-core'")
+    if root.name != "auren-core" and not re.fullmatch(r"skill-[0-9a-f]{32}", root.name):
+        fail(errors, "Package directory must be named 'auren-core' or use the host-managed skill-ID directory")
 
     manifest_path = root / "RELEASE-MANIFEST.json"
     if not manifest_path.is_file():
@@ -112,6 +109,9 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
     try:
         release = load_json(manifest_path)
         skill_version = str(release["skill_version"])
+        core_version = str(release["core_specs_version"])
+        if not re.fullmatch(r"[0-9]+(?:\.[0-9]+)+", core_version):
+            raise ValueError("Invalid Core version")
         if release.get("validated_user_languages") != ["English", "German"]:
             fail(errors, "RELEASE-MANIFEST validated_user_languages must declare the validated English/German quality baseline")
         if release.get("language_behavior") != "respond_in_user_language_when_capable; validated_quality_baseline_en_de":
@@ -123,7 +123,15 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
     except Exception as exc:
         return [*errors, f"Release manifest invalid or incomplete: {exc}"], warnings, stats
 
-    required = [*REQUIRED_STATIC, evidence_rel]
+    core_paths = [
+        f"references/auren-core-specs_v{core_version}.yaml",
+        f"references/auren-core-specs_v{core_version}.yaml.txt",
+        f"references/auren-core-logic_v{core_version}.md",
+        f"references/README_v{core_version}.md",
+        f"references/Guidance4AIsystems_v{core_version}.txt",
+    ]
+    required = [*REQUIRED_STATIC, *core_paths, evidence_rel,
+                release["evaluation"]["upstream_core_inventory"]]
     required = list(dict.fromkeys(required))
     stats["required_files"] = len(required)
     for rel in required:
@@ -160,13 +168,26 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
         fail(errors, f"SKILL.md invalid: {exc}")
 
     try:
-        specs = yaml.safe_load((root / "references/auren-core-specs_v2.4.yaml").read_text(encoding="utf-8"))
+        specs = yaml.safe_load((root / core_paths[0]).read_text(encoding="utf-8"))
         if str(specs["auren_core_spec"]["version"]) != str(release.get("core_specs_version")):
             fail(errors, "Embedded Core Specs version does not match RELEASE-MANIFEST")
-        canonical = (root / "references/auren-core-specs_v2.4.yaml").read_bytes()
-        mirror = (root / "references/auren-core-specs_v2.4.yaml.txt").read_bytes()
+        canonical = (root / core_paths[0]).read_bytes()
+        mirror = (root / core_paths[1]).read_bytes()
         if canonical != mirror:
             fail(errors, "Embedded Core Specs YAML and YAML-TXT must be bit-identical")
+        core = specs["auren_core_spec"]
+        if core_version == "2.5":
+            if core["release"]["status"] != "stable":
+                fail(errors, "Core 2.5 baseline must be the Stable source")
+            for block in ("signal_interpretation", "question_policy", "specification_contract"):
+                if block not in core:
+                    fail(errors, f"Core 2.5 calibration block missing: {block}")
+            if "observation_consent" not in core["systemic_method_layer"]:
+                fail(errors, "Core 2.5 observation-consent block missing")
+        if core_paths[0] not in skill_text or any(
+            old in skill_text for old in ("auren-core-specs_v2.4", "auren-core-logic_v2.4", "Guidance4AIsystems_v2.4")
+        ):
+            fail(errors, "SKILL.md operational source hierarchy must select the current Core version only")
     except Exception as exc:
         fail(errors, f"Core Specs validation failed: {exc}")
 
@@ -191,6 +212,18 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
             fail(errors, "README and Core Specs must require license markers")
         if sources["core_logic"].get("license_marker_required") is not False or sources["guidance"].get("license_marker_required") is not False:
             fail(errors, "Logic and Guidance must not be treated as containing standalone license markers")
+        for sid in ("core_readme", "core_logic", "core_specs", "guidance"):
+            entry = sources[sid]
+            if str(entry.get("baseline_version")) != core_version or entry.get("package_local_file") not in core_paths:
+                fail(errors, f"Remote registry source {sid} must match the embedded Core baseline")
+            if entry.get("retrieval_policy") == "manual_host_review_only":
+                if sid != "core_logic" or entry.get("canonical_url") != (
+                    f"https://raw.githubusercontent.com/stephan-davis-lab/auren-core-specs/v{core_version}/auren-core-logic_v{core_version}.md"
+                ):
+                    fail(errors, "Only the pinned Core Logic reference may be manual-host-review-only")
+            else:
+                for url in [entry["canonical_url"], *entry.get("mirror_urls", [])]:
+                    validate_url(str(url), set(DOCUMENTED_INVARIANTS["allowed_hostnames"]))
         policy_errors = validate_registry_policy(registry["default_policy"])
         for item in policy_errors:
             fail(errors, item)
@@ -292,7 +325,7 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
         ids = [item.get("reference_id") for item in refs_list]
         if len(ids) != len(set(ids)):
             fail(errors, "Optional semantic-reference IDs must be unique")
-        required_ids = {"AUR-009", "AUR-010", "AUR-011", "AUR-012", "AUR-015"}
+        required_ids = {"AUR-009", "AUR-010", "AUR-011", "AUR-012", "AUR-015", "AUR-025"}
         if set(ids) != required_ids:
             fail(errors, f"Optional semantic-reference catalog must contain exactly {sorted(required_ids)}")
         for item in refs_list:
@@ -312,10 +345,14 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
             if assurance.get(field) is not False:
                 fail(errors, f"Semantic-extension assurance must keep {field}=false")
         matrix_by_id = {item.get("id"): item for item in matrix.get("resources", [])}
-        for rid in {"AUR-009", "AUR-010", "AUR-011", "AUR-012"}:
+        for rid in {"AUR-009", "AUR-010", "AUR-011", "AUR-012", "AUR-025"}:
             row = matrix_by_id.get(rid, {})
             if row.get("embedded") is not False or row.get("cataloged") is not True:
                 fail(errors, f"Rights matrix must mark {rid} as cataloged and non-embedded")
+        resonance = next(item for item in refs_list if item["reference_id"] == "AUR-025")
+        expected_resonance = core["model_references"]["concepts"]["resonance_cycle"]["reference"]["url"]
+        if resonance["canonical_url"] != expected_resonance:
+            fail(errors, "Optional Resonanzkreis catalog must match the Core source reference")
     except Exception as exc:
         fail(errors, f"Optional semantic-reference catalog invalid: {exc}")
 

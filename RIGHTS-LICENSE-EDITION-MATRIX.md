@@ -1,9 +1,9 @@
 # AUREN Core Skill Rights, License, and Edition Matrix
 
-**Version:** 1.3  
-**Date:** 2026-08-15  
+**Version:** 1.4  
+**Date:** 2026-10-10  
 **Owner:** Stephan A. Davis  
-**Status:** binding build basis for AUREN Core Skill 1.1.x — Open Edition
+**Status:** binding build basis for AUREN Core Skill 1.2.5 — Open Edition
 
 ## Architecture decision
 
@@ -17,23 +17,23 @@ Package licensing is file-type specific:
 
 ## Source hierarchy
 
-1. AUREN Core Specs v2.4 YAML.
-2. AUREN Core Logic v2.4.
-3. AUREN Core README v2.4.
-4. Guidance for AI Systems v2.4.
-5. AI Index v6.4 as external semantic context.
+1. AUREN Core Specs v2.5 YAML.
+2. AUREN Core Logic v2.5.
+3. AUREN Core README v2.5.
+4. Guidance for AI Systems v2.5.
+5. AI Index v7.4 as external semantic context.
 6. Optional semantic references from `OPTIONAL-SEMANTIC-REFERENCES.json` as non-operational external context.
-7. Historical analysis and handoff material as provenance only, not packaged.
+7. Historical analysis and prior functional-handoff material as provenance only, not packaged; the public Core v2.5 integration handoff is included separately.
 
 ## Resource matrix
 
 | ID | Resource | Role | Rights | Open Edition decision |
 |---|---|---|---|---|
-| AUR-001 | AUREN Core Specs v2.4 | operational source of truth | CC BY-SA 4.0 | embedded, pinned |
-| AUR-002 | AUREN Core Logic v2.4 | operational narrative | CC BY-SA 4.0 | embedded; YAML wins on conflict |
-| AUR-003 | AUREN Core README v2.4 | semantics and source documentation | CC BY-SA 4.0 | embedded |
-| AUR-004 | Guidance for AI Systems v2.4 | supplementary policy | CC BY-SA 4.0 | embedded |
-| AUR-005 | AI Index v6.4 | external semantic context | resource-specific; no package-wide license inferred | linked, not embedded |
+| AUR-001 | AUREN Core Specs v2.5 | operational source of truth | CC BY-SA 4.0 | embedded, pinned |
+| AUR-002 | AUREN Core Logic v2.5 | operational narrative | CC BY-SA 4.0 | embedded; YAML wins on conflict |
+| AUR-003 | AUREN Core README v2.5 | semantics and source documentation | CC BY-SA 4.0 | embedded |
+| AUR-004 | Guidance for AI Systems v2.5 | supplementary policy | CC BY-SA 4.0 | embedded |
+| AUR-005 | AI Index v7.4 | external semantic context | resource-specific; no package-wide license inferred | linked, not embedded |
 | AUR-006 | unversioned Core Specs alias | update detection | external CC source | linked only |
 | AUR-007 | three additional prompt-reflection questions | possible later extension | public license not explicitly confirmed | excluded from the Open Edition until an explicit public license decision exists |
 | AUR-008 | AUREN name and official identity | brand/name layer | separately reserved | use subject to notice |
@@ -41,7 +41,7 @@ Package licensing is file-type specific:
 | AUR-010 | WORT-Prinzip | proprietary methodology | proprietary | optional canonical reference; not embedded; no reconstruction |
 | AUR-011 | Konsequenzen-Kompass | proprietary methodology | proprietary | optional canonical reference; not embedded; no reconstruction |
 | AUR-012 | Einfluss-Formel | proprietary methodology | proprietary | optional canonical reference; not embedded; no reconstruction |
-| AUR-013 | ACR cycle as expressly published in Core v2.4 | runtime component | CC BY-SA 4.0 within Core sources | embedded only in published Core form |
+| AUR-013 | ACR cycle as expressly published in Core v2.5 | runtime component | CC BY-SA 4.0 within Core sources | embedded only in published Core form |
 | AUR-014 | complete ACR Attendancy methodology | proprietary methodology | proprietary | excluded; no derivation claim |
 | AUR-015 | public framework pages | semantic context | external terms | links and attribution only |
 | AUR-016 | mentoring, practitioner, training, workbook, scoring, facilitation, and certification material | proprietary resources | proprietary | excluded |
@@ -53,6 +53,7 @@ Package licensing is file-type specific:
 | AUR-022 | validators, build/check scripts, and test code | tooling | MIT | embedded |
 | AUR-023 | synthetic gold evals | quality assurance | CC BY-SA 4.0 for content; MIT for code | embedded and marked synthetic |
 | AUR-024 | real or anonymized dialogue examples | optional evidence | separate permission required | excluded until approved |
+| AUR-025 | Resonanzkreis | optional reflection/action/feedback context | external terms | canonical link only; no bundled methodology or mandatory workflow |
 
 ## Edition distinction
 
@@ -62,7 +63,7 @@ Package licensing is file-type specific:
 | Purpose | portable Runtime, Integration, and Audit core | canonical public chat experience | owner working environment | bounded between-session reflection |
 | Proprietary models | not embedded | according to its own configuration | may be included | only expressly approved subsets |
 | CustomGPT knowledge base | not included | present | optional, separate | not automatically included |
-| Decision takeover | prohibited | prohibited | prohibited | prohibited |
+| Final judgement/accountability takeover | prohibited | prohibited | prohibited | prohibited |
 | Diagnosis or therapy | prohibited | prohibited | prohibited | prohibited |
 
 ## Derivative rule
@@ -71,10 +72,10 @@ Modified versions must identify changes, preserve CC attribution and ShareAlike 
 
 ## Build consequences
 
-- Pin the v2.4 YAML as operational source of truth.
+- Pin the v2.5 YAML as operational source of truth.
 - Embed Logic, source README, and Guidance under CC BY-SA 4.0.
-- Register AI Index v6.4 externally without a bundled snapshot.
-- Fetch both YAML and YAML-TXT during currentness checks and require equivalence.
+- Register AI Index v7.4 externally without a bundled snapshot.
+- Compare the pinned YAML-TXT with the moving website mirror during currentness checks and require equivalence.
 - Keep proprietary methodologies and the CustomGPT knowledge base out of the package.
 - Catalog selected public model/framework pages as optional semantic references without bundling or relicensing them.
 - Keep the Open Edition fully functional when every optional reference is unavailable.

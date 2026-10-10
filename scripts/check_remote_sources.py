@@ -37,7 +37,7 @@ except ImportError as exc:  # pragma: no cover
     raise SystemExit("PyYAML is required. Install scripts/requirements.txt") from exc
 
 REPORT_VERSION = "1.1"
-USER_AGENT = "AUREN-Core-Source-Checker/1.1.2"
+USER_AGENT = "AUREN-Core-Source-Checker/1.2.5"
 
 
 def normalize(data: bytes) -> bytes:
@@ -128,6 +128,7 @@ def extract_version(source_id: str, text: str) -> str | None:
         r'^Version:\s*["\']?([^"\'\s]+)',
         r'\(v([0-9]+(?:\.[0-9]+)+)\)',
         r'\bVersion:\s*([0-9]+(?:\.[0-9]+)+)',
+        r'^#\s*AUREN Core Specs.*?[—–-]\s*v([0-9]+(?:\.[0-9]+)+)',
     ]
     for pattern in patterns:
         match = re.search(pattern, text, re.MULTILINE | re.IGNORECASE)
@@ -198,6 +199,8 @@ def check_source(source: dict[str, Any], policy: dict[str, Any], source_dir: Pat
 
     for index, url in enumerate(urls):
         try:
+            if source_dir is None and source.get("retrieval_policy") == "manual_host_review_only":
+                raise ValueError("Manual-only pinned reference outside the fixed checker allowlist; no network request made")
             data = load_fixture(source_dir, sid, index) if source_dir else fetch(url, allowed_hostnames, int(policy["timeout_seconds"]), int(policy["max_bytes"]))
             norm = normalize(data)
             text = norm.decode("utf-8")

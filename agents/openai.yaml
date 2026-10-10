@@ -1,0 +1,14 @@
+interface:
+  display_name: AUREN Core v1.2.5
+  short_description: Systemische Reflexion mit Core Specs v2.5
+  default_prompt: Nutze $auren-core, um mein Anliegen mit den Core Specs v2.5 zu reflektieren
+    und meine Entscheidung vorzubereiten.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

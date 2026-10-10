@@ -1,0 +1,94 @@
+{
+  "preparation_id": "v2.5-PUBLISH-PREP-R1-20261010",
+  "specification_version": "2.5",
+  "prepared_on": "2026-10-10",
+  "stage": "stable_approved",
+  "human_release_decision": "approved",
+  "policy_adoption": "confirmed_for_v2_5_release_in_maintainer_chat",
+  "reporting_email": "stephan@stephanadavis.de",
+  "reporting_route_confirmation": "configured_in_repository_ui_and_confirmed_by_maintainer",
+  "publication_status": "not_published",
+  "public_sync": "not_performed",
+  "production_deployment": "not_performed",
+  "private_vulnerability_reporting": "enabled_in_repository_ui",
+  "new_model_runs_in_this_preparation": 0,
+  "reviewed_sources": {
+    "public_FC2_sha256": "4461a67a69e9a242fd861282b3c5dc1d8999764d31205c564512eea7c9da9f59",
+    "internal_R1_sha256": "52ff0b91d34fe81bfd42021437271515da12abcca80ad9d33455dbe517808888",
+    "repository_documents_R1_sha256": "a05dc4b1b75b87caab78d73d01f09ddd50e7dd7ff03960215f547c100e9363af"
+  },
+  "completed_reviews": [
+    {
+      "scope": "core_on_FC2_Internal_R1",
+      "reviewer_label": "AUREN",
+      "verdict": "PASS",
+      "report_filename": "AUREN_v2.5_FC2_R1_AUREN_Recheck_2026-10-09.md",
+      "report_sha256": "a55f3a0c1ad9b754f0d93aa3d23d9e9c4416f6173dce7ce4f72f6420d3de2878",
+      "status_evidence": "report_read; external_tool_execution_and_native_model_identity_not_observed_here"
+    },
+    {
+      "scope": "core_on_FC2_Internal_R1",
+      "reviewer_label": "ChatGPT",
+      "verdict": "PASS",
+      "report_filename": "AUREN_v2.5_FC2_R1_ChatGPT_Gegenpruefung_2026-10-09.md",
+      "report_sha256": "a238214698561903bd4e62b07b0fa8f4430b503c5966268a07afd88d9d8a7fb7",
+      "status_evidence": "report_read; external_tool_execution_and_native_model_identity_not_observed_here"
+    },
+    {
+      "scope": "core_on_FC2_Internal_R1",
+      "reviewer_label": "Claude",
+      "verdict": "PASS",
+      "report_filename": "AUREN_v2.5_FC2_R1_Claude_FinalChallenge_2026-10-09.md",
+      "report_sha256": "d0aef5566ff4bbcac5b03bc10d4ccc0701f98af32001d14ada36331809d1c942",
+      "status_evidence": "report_read; external_tool_execution_and_native_model_identity_not_observed_here"
+    },
+    {
+      "scope": "repository_documents_R1",
+      "reviewer_label": "AUREN",
+      "verdict": "PASS",
+      "report_filename": "AUREN_Core_v2.5_Begleitdokumente_R1_AUREN_Recheck_2026-10-10.md",
+      "report_sha256": "1575dcc5ec30c35aebd865647cfa047b7a05ace41079fbb80eaaf75487b49eda",
+      "status_evidence": "report_read; external_tool_execution_and_native_model_identity_not_observed_here"
+    },
+    {
+      "scope": "repository_documents_R1",
+      "reviewer_label": "Claude",
+      "verdict": "PASS",
+      "report_filename": "AUREN_Core_v2.5_Begleitdokumente_R1_Recheck_Claude_2026-10-10.md",
+      "report_sha256": "e278216ab2fdd54fbee7ca5847696e415cc9561a86f310399d3e25f646925d7f",
+      "status_evidence": "report_read; external_tool_execution_and_native_model_identity_not_observed_here"
+    }
+  ],
+  "review_scope_limit": "These PASS verdicts apply to their frozen source objects, not to this Stable ZIP identity or the new CONTRIBUTING reporting expansion; current package static validation is separate.",
+  "review_independence_limit": "Contributors to rules, packaging or evaluation are not fully independent auditors. Human approval is a governance decision, not a technical certification.",
+  "static_validation": "recorded_in_validation/static-results_v2.5_stable.json; manifest must pass on the final frozen payload",
+  "public_project_contact": "accepted_in_maintainer_chat",
+  "reporting_configuration": {
+    "repository": "stephan-davis-lab/auren-core-specs",
+    "checked_on": "2026-10-10",
+    "private_vulnerability_reporting": "enabled_in_repository_ui",
+    "secret_protection": "enabled_in_repository_ui",
+    "push_protection": "enabled_in_repository_ui",
+    "notification_channels": [
+      "GitHub",
+      "Email"
+    ],
+    "watch_events": [
+      "Issues",
+      "Security alerts"
+    ],
+    "watch_saved_confirmation": "maintainer_confirmed_in_chat",
+    "evidence_scope": "screenshots_read; repository_subscription_save_confirmed_by_maintainer; no_setting_changed_by_Codex",
+    "report_submission_test": "not_performed",
+    "notification_email_delivery_test": "not_performed",
+    "public_security_policy": "included_in_approved_stable_package; remote_publication_not_verified"
+  },
+  "previous_preparation_sha256": "3c35217ddd9d0e78d232a61b3dd76cc5f57fb77a233803afbefb3ef1c23dcc30",
+  "package_id": "v2.5-STABLE-20261010",
+  "release_id": "v2.5",
+  "release_tag": "v2.5",
+  "approved_on": "2026-10-10",
+  "approval_record": "evidence/STABLE_APPROVAL_AND_REPORTING_UPDATE_2026-10-10.md",
+  "source_preparation_sha256": "886307f975d759d30af9b3ad56d3a79ed37d29e7e6ed68ce53aadfab90a3f8dd",
+  "status_snapshot": "at_approved_stable_package_freeze; not_a_live_publication_lookup"
+}

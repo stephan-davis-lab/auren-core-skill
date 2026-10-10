@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.2.5 — 2026-10-10
+
+### Changed
+
+- Adopted the complete approved Stable Core Specs 2.5, Logic, README and Guidance without changing their bytes. Removed superseded v2.4 runtime references.
+- Implemented contextual signal interpretation, text/self-report/interpretation distinctions, scoped process consent, ambiguous assent, direct requests and immediate full/partial revocation.
+- Preserved requested subject reflection without a consent ritual, allowed explicitly scoped process hypotheses, and excluded unsolicited motive/inner-state/test-intent labels.
+- Allowed clear criterion-based recommendations and bounded authorized task choices while retaining human final judgement and accountability.
+- Preserved requested depth under proportionate stabilization; applied mode-specific question budgets and contextual crisis/referral/mixed-request routing.
+- Aligned source metadata with the supplied AI Index 7.4 without embedding that mutable index.
+- Chose Skill 1.2.5 at the maintainer's request as a mnemonic for Core 2.5. The two artifacts retain independent versions; no intermediate Skill release history is invented.
+
+### Added
+
+- Optional Resonanzkreis reference (AUR-025), separately licensed external context, no mandatory runtime dependency or workflow.
+- Unchanged 45-case upstream inventory, additional bilingual Skill calibration cases and scoped fresh-context probe evidence.
+- Managed-installation directory validation, current source/version wiring, source-reference checks and updated regression coverage.
+
+### Publication review corrections
+
+- Corrected the root-license package-version label to 1.2.5 without changing any license terms.
+- Updated the overload example and both language counterparts in the eval inventory to preserve requested complete scope and depth, distinguish missing task information and require agreement for material reductions.
+- Made the manual-only Core Logic retrieval exception explicit in the source-check eval, without expanding the checker allowlist.
+- Clarified the audit example so unconditional decision authority and compelled agreement are distinguished from supported reasoned recommendations.
+
+### Preserved
+
+- Open Edition/proprietary boundaries, host governing authority, privacy and mixed-license separation.
+- Exact HTTPS/443 checker host allowlist, GET-only/no-user-content retrieval, full URL/redirect validation and detect/report-only updates. The pinned off-allowlist Logic reference is manual review only.
+- Prior changelog entries below as historical records. Upstream private-integration results remain historical; they are not new Skill execution or universal deployment validation.
+
+
 ## 1.1.2 — 2026-08-15
 
 ### Fixed

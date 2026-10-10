@@ -9,6 +9,8 @@ import json
 import sys
 from pathlib import Path
 
+import yaml
+
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
@@ -35,6 +37,13 @@ REQUIRED_RISK_PARITY_GROUPS = {
     "privacy_no_confidentiality_claim",
     "certainty_loop",
     "no_forced_positivity",
+}
+
+REQUIRED_CORE25_PARITY_GROUPS = {
+    "clear-recommendation", "ambiguous-compound-assent", "observation-only-scope",
+    "permitted-process-hypothesis", "requested-pattern-reflection", "revoked-process-permission",
+    "partial-revocation", "sole-benign-technical-support", "quoted-crisis-specification",
+    "passive-versus-immediate-risk", "requested-depth-preserved", "no-guessed-test-intent",
 }
 
 
@@ -145,6 +154,34 @@ def validate(root: Path) -> list[str]:
                 f"Risk path must have exact English/German parity: {group}; found {sorted(languages)}"
             )
 
+    groups = {case.get("calibration_group") for case in cases if case.get("calibration_group")}
+    if groups != REQUIRED_CORE25_PARITY_GROUPS:
+        errors.append("Core 2.5 calibration groups must match the declared regression coverage")
+    for group in sorted(REQUIRED_CORE25_PARITY_GROUPS):
+        languages = {case.get("language") for case in cases if case.get("calibration_group") == group}
+        if languages != {"en", "de"}:
+            errors.append(f"Core 2.5 calibration group must have exact English/German parity: {group}")
+
+    try:
+        manifest = load_json(manifest_path)
+        upstream_path = root / manifest["evaluation"]["upstream_core_inventory"]
+        upstream = yaml.safe_load(upstream_path.read_text(encoding="utf-8"))
+        upstream_cases = upstream["scenarios"]
+        upstream_ids = [case["id"] for case in upstream_cases]
+        if len(upstream_ids) != len(set(upstream_ids)) or len(upstream_ids) != manifest["evaluation"]["upstream_core_case_count"]:
+            errors.append("Upstream Core scenario count or unique IDs do not match the manifest")
+        core_version = str(manifest["core_specs_version"])
+        if str(upstream["suite_version"]) != core_version:
+            errors.append("Upstream scenario suite version must match the adopted Core baseline")
+        core = yaml.safe_load((root / f"references/auren-core-specs_v{core_version}.yaml").read_text(encoding="utf-8"))["auren_core_spec"]
+        for case in upstream_cases:
+            for reference in case.get("rule_refs", []):
+                node = core
+                for part in reference.split("."):
+                    node = node[part]
+    except Exception as exc:
+        errors.append(f"Upstream Core scenario inventory or rule reference invalid: {exc}")
+
     trigger_cases = triggers.get("cases", [])
     trigger_ids = [case.get("id") for case in trigger_cases]
     if len(trigger_ids) != len(set(trigger_ids)):
@@ -189,6 +226,11 @@ def validate(root: Path) -> list[str]:
     behavioral = evidence.get("behavioral_model_evidence", {})
     if behavioral.get("status") == "not_run" and behavioral.get("hosts"):
         errors.append("Behavioral evidence marked not_run must not list executed hosts")
+    if manifest["evaluation"].get("behavioral_host_evidence_status") != behavioral.get("status"):
+        errors.append("Behavioral evidence status must match the release manifest")
+    for host in behavioral.get("hosts", []):
+        if host.get("cases_run") != sum(host.get(key, 0) for key in ("passed", "failed", "manual_reviewed")):
+            errors.append("Behavioral host outcome counts must sum to cases_run")
     if evidence.get("release", {}).get("evidence_status") not in {"complete", "partial", "draft"}:
         errors.append("Invalid release evidence status")
 
@@ -224,6 +266,8 @@ def main() -> int:
     print("- Primary bilingual parity: Runtime, Integration, Audit, crisis, nonactivation")
     print(f"- High-risk paths with full English/German parity: {len(REQUIRED_RISK_PARITY_GROUPS)}")
     print(f"- Trigger classes with full English/German parity: {len(REQUIRED_TRIGGER_CLASSES)}")
+    print(f"- Core 2.5 calibration groups with English/German parity: {len(REQUIRED_CORE25_PARITY_GROUPS)}")
+    print("- Upstream Core cases and rule references: 45")
     print("- Release evidence: full JSON Schema 2020-12 validation passed")
     return 0
 

@@ -1,8 +1,8 @@
 {
-  "catalog_version": "1.0",
+  "catalog_version": "1.1",
   "owner": "Stephan A. Davis",
   "edition": "open-edition",
-  "skill_version": "1.1.2",
+  "skill_version": "1.2.5",
   "purpose": "Optional external semantic extensions for the AUREN Core Skill Open Edition. These references are not required for core operation and do not become part of the package license by being linked.",
   "policy": {
     "automatic_fetch": false,
@@ -84,6 +84,19 @@
       "may_override_core": false,
       "package_license_applies": false,
       "usage_boundary": "Reference the expressly published page only. Do not infer, reconstruct, or claim access to unpublished methodology."
+    },
+    {
+      "reference_id": "AUR-025",
+      "catalog_id": "resonance-cycle",
+      "label": "Resonanzkreis / Resonance Cycle",
+      "canonical_url": "https://stephanadavis.de/perspektivensystemik/resonanzkreis/",
+      "role": "optional_semantic_context",
+      "rights": "external_terms",
+      "bundled": false,
+      "required_for_core_operation": false,
+      "may_override_core": false,
+      "package_license_applies": false,
+      "usage_boundary": "Optional reflection, action and feedback context only; no required workflow, no change to ACR, consent, safety, mode priority or human judgement."
     }
   ]
 }

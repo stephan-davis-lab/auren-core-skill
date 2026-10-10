@@ -1,8 +1,8 @@
 # AUREN Core Skill — Open Edition
 
-**Skill version:** 1.1.2  
-**Core Specs baseline:** 2.4  
-**AI Index baseline:** 6.4  
+**Skill version:** 1.2.5  
+**Core Specs baseline:** 2.5  
+**AI Index baseline:** 7.4  
 **Owner and author:** Stephan A. Davis  
 **Edition:** Open Edition
 
@@ -56,7 +56,7 @@ python -m unittest discover -s scripts/tests -v
 
 ## Open Edition and optional semantic extensions
 
-Version 1.1.0 makes the package boundary explicit: the Open Edition is fully usable on its own, while selected Stephan A. Davis model and framework pages may be used only as optional external semantic context.
+The package boundary remains explicit: the Open Edition is fully usable on its own, while selected Stephan A. Davis model and framework pages may be used only as optional external semantic context.
 
 The machine-readable catalog is `OPTIONAL-SEMANTIC-REFERENCES.json`; the human-readable policy is `OPTIONAL-SEMANTIC-REFERENCES.md`.
 
@@ -72,35 +72,34 @@ Optional references:
 
 This gives the public package a clear separation between the open operational Core and optional external depth.
 
+## Core v2.5 alignment and version cue
+
+Skill **1.2.5** embeds the complete approved **Stable Core Specs 2.5**, its YAML-TXT mirror, Logic, source README and Guidance without content changes. The `2.5` suffix is a deliberate maintainer-requested version cue. Skill and Core remain independently versioned: the metadata explicitly records the actual baseline, and no intermediate Skill releases or automatic future compatibility are implied.
+
+The runtime adapter implements contextual evidence classes, scoped/revocable process consent, requested pattern reflection, question budgets, clear reasoned recommendations, proportionate stabilization, mixed-request safety routing and calibrated referral. The optional Resonanzkreis adds external context without introducing a mandatory workflow, replacing ACR or changing consent/safety authority.
+
+Embedded upstream documents retain their original freeze-time statuses and relative paths. `references/README_v2.5.md` is the unchanged upstream `README.md`, not this Skill's installation guide; paths inside it refer to the original Public Bundle. `SOURCE-MATERIAL-NOTICES.md` describes the local mapping and the exact subset bundled here.
+
 ## Evaluation and release evidence
 
-Version 1.1.2 preserves the Open-Edition boundary validation introduced in v1.1.0 and carries forward the v1.0.4 security controls. It also incorporates the three non-blocking assurance improvements identified during independent review:
+Use `evals/release-evidence-v1.2.5.json` for checks actually executed for this Skill. The previous private-integration evidence in `evals/core-specs-v2.5/` remains historical and is not credited as execution on this Skill or a new host.
 
-- URLs containing embedded username/password userinfo are explicitly rejected for direct requests and redirects;
-- `SECURITY.md` distinguishes package-internal checksums from the separately published release-ZIP SHA-256 external integrity reference;
-- all six structurally distinct update-report classifications used in regression coverage are generated through the production builder and validated against the bundled JSON Schema.
+- `evals/evals.json`: bilingual Skill regression inventory.
+- `evals/description-trigger-evals.json`: activation and mode-routing inventory.
+- `evals/core-specs-v2.5/scenarios_v2.5.yaml` and `.md`: all 45 authored upstream cases, byte-identical.
+- `evals/behavioral-probes-v1.2.5.json`: bounded synthetic output probes, if executed and recorded.
+- `scripts/validate_release_evidence.py`: full JSON Schema validation.
+- `scripts/validate_evals.py`: inventory and semantic evidence consistency.
+- `scripts/validate_package.py`: source/version/rights/security and checksum validation.
 
-The package validator additionally checks the optional semantic-reference catalog, its edition/version alignment, canonical-host URL constraints, non-bundled status, no-override policy, package-license separation, and required catalog IDs.
-
-The dedicated validator `scripts/validate_release_evidence.py` performs full structural validation. `scripts/validate_evals.py` additionally checks semantic relationships, manifest-derived version alignment, case uniqueness, mode parity, high-risk language parity, trigger coverage, and non-claim discipline. Package validation also cross-checks artifact-sensitive evidence fields, including `SKILL.md` line count and release-evidence timestamp ordering (`generated_at` must not precede any recorded run).
-
-The evaluation files are synthetic. Static package validation, JSON-Schema validation, inventory validation, unit tests, and checksum verification can be executed locally. Behavioral model or host results must be recorded only after they are actually run; the included evidence record does not claim unperformed host testing.
-
-See:
-
-- `evals/evals.json`
-- `evals/description-trigger-evals.json`
-- `evals/release-evidence.schema.json`
-- `evals/release-evidence-v1.1.2.json`
-- `references/update-report.schema.json`
-- `evals/RELEASE-EVIDENCE.md`
+Keep evaluation prompts, expected criteria, gold principles and audit evidence out of the target runtime context. Inventory validation is not behavioral execution. Small synthetic probes are not a complete multilingual or multi-host deployment validation. Refer to the actual release evidence for status and limitations.
 
 ## Source hierarchy
 
-1. `references/auren-core-specs_v2.4.yaml`
-2. `references/auren-core-logic_v2.4.md`
-3. `references/README_v2.4.md`
-4. `references/Guidance4AIsystems_v2.4.txt`
+1. `references/auren-core-specs_v2.5.yaml`
+2. `references/auren-core-logic_v2.5.md`
+3. `references/README_v2.5.md`
+4. `references/Guidance4AIsystems_v2.5.txt`
 5. external AI Index as supplementary semantic context only
 6. optional semantic references from `OPTIONAL-SEMANTIC-REFERENCES.json` as non-operational external context only
 
@@ -108,16 +107,9 @@ The embedded YAML remains the operational source of truth.
 
 ## Remote currentness
 
-The **remote currentness registry** covers only version/update detection for approved Core sources:
+The update checker retains its fixed `stephanadavis.de` HTTPS/443 allowlist, GET-only/no-user-content policy, full redirect validation and detect/report-only behavior. It checks the AI Index v7.4 baseline, versioned website README and Guidance, and the pinned v2.5 YAML-TXT together with the moving website mirror.
 
-- `ai-index.txt`
-- `README_v2.4.md`
-- `auren-core-logic_v2.4.md`
-- `auren-core-specs_v2.4.yaml`
-- `auren-core-specs_v2.4.yaml.txt`
-- `Guidance4AIsystems_v2.4.txt`
-
-The checker detects changes and produces a recommendation. It does not self-update the skill. Security invariants are enforced in code and mirrored exactly in the registry as documentation; the registry cannot expand the host allowlist without failing validation. Operational changes require human approval, regression tests, and a new release.
+The supplied canonical Core Logic v2.5 link is pinned on `raw.githubusercontent.com`, outside that fixed checker allowlist. It is recorded as `manual_host_review_only`: the checker makes no request to it and reports unavailable currentness. An appropriately authorized host may review the published pinned link separately. This does not broaden the automatic checker or authorize runtime fetching. Network failures leave the local approved sources active without a fresh-currentness claim.
 
 ## Privacy
 
@@ -166,7 +158,7 @@ auren-core/
 │   ├── evals.json
 │   ├── description-trigger-evals.json
 │   ├── release-evidence.schema.json
-│   ├── release-evidence-v1.1.2.json
+│   ├── release-evidence-v1.2.5.json
 │   └── RELEASE-EVIDENCE.md
 ├── examples/
 └── scripts/

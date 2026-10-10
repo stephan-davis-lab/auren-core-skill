@@ -1,7 +1,7 @@
 # Optional Semantic References — Open Edition
 
-**Catalog version:** 1.0  
-**Applies to:** AUREN Core Skill 1.1.x — Open Edition
+**Catalog version:** 1.1  
+**Applies to:** AUREN Core Skill 1.2.5 — Open Edition
 
 ## Purpose
 
@@ -28,6 +28,8 @@ The machine-readable catalog is `OPTIONAL-SEMANTIC-REFERENCES.json`.
 - WORT-Prinzip — `https://stephanadavis.de/perspektivensystemik/wort-prinzip/`
 - Konsequenzen-Kompass / Consequences Compass — `https://stephanadavis.de/perspektivensystemik/konsequenzen-kompass/`
 - Einfluss-Formel / Influence Formula — `https://stephanadavis.de/perspektivensystemik/einfluss-formel/`
+
+- Resonanzkreis / Resonance Cycle — `https://stephanadavis.de/perspektivensystemik/resonanzkreis/`; optional reflection/action/feedback context, no mandatory workflow or ACR replacement.
 
 ## License separation
 

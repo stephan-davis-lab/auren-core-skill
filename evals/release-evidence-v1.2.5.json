@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.4",
+  "release": {
+    "skill": "auren-core",
+    "skill_version": "1.2.5",
+    "release_date": "2026-10-10",
+    "evidence_status": "partial",
+    "release_scope": "Stable Core 2.5 implementation in the existing Skill, including publication-review corrections for Open Edition 1.2.5. This build record describes release readiness; it does not assert that a public GitHub release has occurred."
+  },
+  "environment": {
+    "build_host": {
+      "type": "containerized build environment",
+      "operating_system": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "python_version": "3.12.14"
+    },
+    "network_behavioral_host_available": false
+  },
+  "evaluation_runs": [
+    {
+      "id": "quick-validation",
+      "type": "static_validation",
+      "result": {
+        "warnings": 0
+      },
+      "command": "python3 skill-creator/scripts/quick_validate.py .",
+      "status": "passed",
+      "executed_at": "2026-10-10T15:45:43.557Z"
+    },
+    {
+      "id": "package-validation",
+      "type": "static_validation",
+      "result": {
+        "required_files_checked": 55,
+        "warnings": 0,
+        "skill_md_lines": 279,
+        "security_invariants_validated": true,
+        "manifest_driven_version_checks": true,
+        "update_report_schema_validation": true,
+        "update_report_schema_version": "1.1",
+        "optional_semantic_catalog_validated": true,
+        "optional_semantic_reference_count": 6,
+        "external_release_hash_boundary_documented": true
+      },
+      "command": "python3 scripts/validate_package.py .",
+      "status": "passed",
+      "executed_at": "2026-10-10T16:12:40.908947+00:00",
+      "note": "Rerun after publication-review corrections to examples, three eval cases and the root-license version label. Operational Core sources and SKILL.md are unchanged."
+    },
+    {
+      "id": "release-evidence-schema-validation",
+      "type": "schema_validation",
+      "result": {
+        "release_evidence_schema_validation": true,
+        "schema_draft": "JSON Schema 2020-12",
+        "schema_errors": 0
+      },
+      "command": "python3 scripts/validate_release_evidence.py .",
+      "status": "passed",
+      "executed_at": "2026-10-10T16:12:41.108987+00:00",
+      "note": "Rerun after publication-review corrections to examples, three eval cases and the root-license version label. Operational Core sources and SKILL.md are unchanged."
+    },
+    {
+      "id": "eval-inventory-validation",
+      "type": "inventory_validation",
+      "result": {
+        "primary_eval_cases": 65,
+        "description_trigger_cases": 20,
+        "bilingual_parity": [
+          "runtime",
+          "integration",
+          "audit",
+          "crisis",
+          "nonactivation"
+        ],
+        "risk_parity_groups": [
+          "overload_stabilization",
+          "high_risk_medical_referral",
+          "privacy_minimize_identifiers",
+          "privacy_no_confidentiality_claim",
+          "certainty_loop",
+          "no_forced_positivity"
+        ],
+        "risk_paths_with_full_parity": 6,
+        "trigger_classes_with_full_parity": 10,
+        "release_evidence_schema_validation": true
+      },
+      "command": "python3 scripts/validate_evals.py .",
+      "note": "Rerun after publication-review corrections to examples, three eval cases and the root-license version label. Operational Core sources and SKILL.md are unchanged.",
+      "status": "passed",
+      "executed_at": "2026-10-10T16:12:41.552400+00:00"
+    },
+    {
+      "id": "security-invariant-regression",
+      "type": "unit_test",
+      "result": {
+        "tests_run": 32,
+        "failures": 0,
+        "errors": 0,
+        "url_security_cases": 9,
+        "redirect_security_cases": 8,
+        "security_invariants_validated": true,
+        "redirect_full_url_validation": true,
+        "allowed_port_policy_validated": true,
+        "userinfo_policy_validated": true,
+        "update_report_schema_validation": true,
+        "update_report_schema_version": "1.1",
+        "update_report_classification_branches_validated": 6
+      },
+      "command": "python3 -m unittest scripts.tests.test_remote_source_checker -v",
+      "status": "passed",
+      "executed_at": "2026-10-10T15:50:22.205Z"
+    },
+    {
+      "id": "unit-tests",
+      "type": "unit_test",
+      "result": {
+        "tests_run": 60,
+        "failures": 0,
+        "errors": 0
+      },
+      "command": "python3 -m unittest discover -s scripts/tests -v",
+      "note": "Rerun after publication-review corrections to examples, three eval cases and the root-license version label. Operational Core sources and SKILL.md are unchanged.",
+      "status": "passed",
+      "executed_at": "2026-10-10T16:12:45.412704+00:00"
+    },
+    {
+      "id": "embedded-core-source-comparison",
+      "type": "static_validation",
+      "status": "passed",
+      "executed_at": "2026-10-10T15:50:22.517596Z",
+      "command": "compare embedded sources with the supplied Stable Public Bundle bytes",
+      "result": {
+        "entries_verified": 7
+      },
+      "note": "Five runtime source files and two authored upstream scenario files are byte-identical to the supplied source package."
+    },
+    {
+      "id": "remote-source-currentness-check",
+      "type": "static_validation",
+      "status": "partial",
+      "executed_at": "2026-10-10T15:44:25+00:00",
+      "command": "python3 scripts/check_remote_sources.py --registry REMOTE-SOURCE-REGISTRY.json --output evals/source-update-report-v1.2.5.json",
+      "scope": [
+        "Fixed-source remote update detection; no user content"
+      ],
+      "note": "AI Index, README, pinned Core Specs/moving mirror and Guidance report no_change. Pinned Core Logic is manual-host-review-only outside the unchanged automatic checker allowlist and reports fetch_unavailable. The complete generated report passed its JSON Schema."
+    },
+    {
+      "id": "fresh-context-behavioral-probes",
+      "type": "behavioral_eval",
+      "status": "passed",
+      "executed_at": "2026-10-10T15:44:00Z",
+      "scope": [
+        "Six bounded independent synthetic responses"
+      ],
+      "note": "Actual outputs and case-level manual assessments: evals/behavioral-probes-v1.2.5.json. This is a partial behavioral sample, not full inventory execution."
+    },
+    {
+      "id": "publication-source-and-license-review",
+      "type": "manual_review",
+      "status": "passed",
+      "executed_at": "2026-10-10T16:14:44.956496+00:00",
+      "scope": [
+        "Published pinned Core Logic v2.5 byte comparison",
+        "Source attribution, mixed licenses and non-bundled proprietary boundaries"
+      ],
+      "note": "The published pinned Core Logic was fetched through a host-authorized GitHub read, then compared again at this record time: exact SHA-256 e2335c3bb91069267e3f9bce0d40f3b61e0f02135d2c5b08bcb16758b82aa3ee. The automatic checker and its unavailable classification remain unchanged; its host allowlist was not expanded."
+    },
+    {
+      "id": "publication-independent-review-and-recheck",
+      "type": "manual_review",
+      "status": "passed",
+      "executed_at": "2026-10-10T16:14:44.956496+00:00",
+      "scope": [
+        "Independent fresh-context qualitative package review",
+        "Targeted recheck of corrected examples and evaluation criteria",
+        "Source, rights, security, version and evidence consistency"
+      ],
+      "note": "A separate Codex review agent inspected the artifacts without inherited task conclusions. Initial findings: overload scope loss, imprecise overload/source-check eval criteria, a stale root-license version and overly broad audit-example wording. All were corrected. The targeted recheck found no remaining concrete publication blocker. This is qualitative model-assisted review, not a new behavioral host execution or owner release approval. The record timestamp is collection time; exact internal model ID was not exposed."
+    }
+  ],
+  "behavioral_model_evidence": {
+    "status": "partial",
+    "hosts": [
+      {
+        "host_name": "ChatGPT Work collaboration subagent",
+        "host_version": "not exposed",
+        "model_name": "Codex agent with inherited session default; exact internal model ID unavailable",
+        "model_version": "unknown",
+        "executed_at": "2026-10-10T15:44:00Z",
+        "cases_run": 6,
+        "passed": 6,
+        "failed": 0,
+        "manual_reviewed": 0,
+        "evidence_reference": "evals/behavioral-probes-v1.2.5.json"
+      }
+    ],
+    "reason": "Six one-response probes. Full bilingual Skill/trigger inventories and the complete upstream 45-case/51-stage suite were not executed on this Skill. No multi-host, cross-model or clinical validation is claimed.",
+    "recommended_minimum_for_future_release_evidence": [
+      "run the full bilingual eval inventory on at least two supported hosts or models",
+      "record model and host names and versions",
+      "record pass, fail, and manual-review outcomes by case ID",
+      "retain representative outputs or secure references to them",
+      "document deviations and regression decisions"
+    ]
+  },
+  "known_limitations": [
+    "Static validation cannot prove host-level activation or response behavior.",
+    "Six one-response probes. Full bilingual Skill/trigger inventories and the complete upstream 45-case/51-stage suite were not executed on this Skill. No multi-host, cross-model or clinical validation is claimed.",
+    "Internal model ID and native execution timestamps for the bounded probes were unavailable; collection time and disclosed host identity are recorded.",
+    "Prior private-integration Core tests remain historical and are not new Skill execution.",
+    "Optional external references may be unavailable; local approved sources remain active without remote currentness claims."
+  ],
+  "generated_at": "2026-10-10T16:14:44.956496+00:00"
+}

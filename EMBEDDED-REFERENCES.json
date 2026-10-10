@@ -2,84 +2,88 @@
   "schema_version": "1.1",
   "package": {
     "name": "auren-core",
-    "version": "1.1.2"
+    "version": "1.2.5"
   },
   "references": [
     {
       "reference_id": "AUR-001",
-      "name": "AUREN Core Specs v2.4",
+      "name": "AUREN Core Specs v2.5",
       "embedded": true,
-      "embedded_path": "references/auren-core-specs_v2.4.yaml",
-      "package_sha256": "80d6bc45cdaf6eeed5bb82a794fe4057058636f7be6aa183d1175d0785b12548",
-      "canonical_source_sha256": "990c83356a1465a059d6e518c11e28eaa870a6ae1592d6dc60b28694040da475",
-      "canonical_source_sha256_normalized": "80d6bc45cdaf6eeed5bb82a794fe4057058636f7be6aa183d1175d0785b12548",
+      "embedded_path": "references/auren-core-specs_v2.5.yaml",
+      "package_sha256": "5312902111108831a259034a48af93b459a90eaa4364f5f7076ef1ff9a4fba9c",
+      "canonical_source_sha256": "5312902111108831a259034a48af93b459a90eaa4364f5f7076ef1ff9a4fba9c",
+      "canonical_source_sha256_normalized": "f9abb30b0f27b2718a77d78cf07505b8c905da5ba60472350df36031bdc007f3",
       "reference_role": "runtime_configuration",
       "required_for_core_operation": true,
       "source_of_truth": true,
       "update_strategy": "manual_release_only",
       "license_scope": "package_license",
-      "package_modified": false
+      "package_modified": false,
+      "source_provenance": "user_supplied_stable_public_package"
     },
     {
       "reference_id": "AUR-002",
-      "name": "AUREN Core Logic v2.4",
+      "name": "AUREN Core Logic v2.5",
       "embedded": true,
-      "embedded_path": "references/auren-core-logic_v2.4.md",
-      "package_sha256": "c630a4fba27adee0d143aa868e52796398146991f478660ef3ce00c4250ae8ff",
-      "canonical_source_sha256": "ddd80e6eb6ea9f08b5a47ec6c65e15e7b6dff02beeacce210bc0ee9e30847092",
-      "canonical_source_sha256_normalized": "ddd80e6eb6ea9f08b5a47ec6c65e15e7b6dff02beeacce210bc0ee9e30847092",
+      "embedded_path": "references/auren-core-logic_v2.5.md",
+      "package_sha256": "e2335c3bb91069267e3f9bce0d40f3b61e0f02135d2c5b08bcb16758b82aa3ee",
+      "canonical_source_sha256": "e2335c3bb91069267e3f9bce0d40f3b61e0f02135d2c5b08bcb16758b82aa3ee",
+      "canonical_source_sha256_normalized": "1a93ebbbe08212bb8dd53868fb063eafa28590098bbce087241ed1cab433f445",
       "reference_role": "runtime_configuration",
       "required_for_core_operation": true,
       "source_of_truth": false,
       "update_strategy": "review_before_adoption",
       "license_scope": "package_license",
-      "package_modified": true,
-      "modification_notice": "One German stabilization example translated to English; LF normalization."
+      "package_modified": false,
+      "source_provenance": "user_supplied_stable_public_package"
     },
     {
       "reference_id": "AUR-003",
-      "name": "AUREN Core README v2.4",
+      "name": "AUREN Core README v2.5",
       "embedded": true,
-      "embedded_path": "references/README_v2.4.md",
-      "package_sha256": "6a2f7e6be31f15552d7d1d2dd2793b0f19a1fa0043fc1725a40ced2f7c0d7881",
-      "canonical_source_sha256": "6a2f7e6be31f15552d7d1d2dd2793b0f19a1fa0043fc1725a40ced2f7c0d7881",
-      "canonical_source_sha256_normalized": "6a2f7e6be31f15552d7d1d2dd2793b0f19a1fa0043fc1725a40ced2f7c0d7881",
+      "embedded_path": "references/README_v2.5.md",
+      "package_sha256": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
+      "canonical_source_sha256": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
+      "canonical_source_sha256_normalized": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
       "reference_role": "semantic_source",
       "required_for_core_operation": false,
       "source_of_truth": false,
       "update_strategy": "review_before_adoption",
       "license_scope": "package_license",
-      "package_modified": false
+      "package_modified": false,
+      "source_provenance": "user_supplied_stable_public_package"
     },
     {
       "reference_id": "AUR-004",
-      "name": "Guidance for AI Systems v2.4",
+      "name": "Guidance for AI Systems v2.5",
       "embedded": true,
-      "embedded_path": "references/Guidance4AIsystems_v2.4.txt",
-      "package_sha256": "20988e6adeb47aa06603623bb65b06931b43f332e9f6c487866954fc09feb988",
-      "canonical_source_sha256": "f50c9ae9e210c168ee0a89cfd46e32fe0f10f22cde06771306504bdd09607877",
-      "canonical_source_sha256_normalized": "20988e6adeb47aa06603623bb65b06931b43f332e9f6c487866954fc09feb988",
+      "embedded_path": "references/Guidance4AIsystems_v2.5.txt",
+      "package_sha256": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
+      "canonical_source_sha256": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
+      "canonical_source_sha256_normalized": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
       "reference_role": "policy_reference",
       "required_for_core_operation": false,
       "source_of_truth": false,
       "update_strategy": "review_before_adoption",
       "license_scope": "package_license",
-      "package_modified": false
+      "package_modified": false,
+      "source_provenance": "user_supplied_stable_public_package"
     },
     {
       "reference_id": "AUR-005",
-      "name": "AI Index v6.4",
+      "name": "AI Index v7.4",
       "embedded": false,
       "embedded_path": null,
       "canonical_url": "https://stephanadavis.de/ai-index.txt",
-      "canonical_source_sha256": "52477dd0164873395358ba85ceaa765a09c6da07b90f4a7bfd67b7a4b6c48bd3",
-      "canonical_source_sha256_normalized": "b0208ef14913dd4ea66c9b70033fae00d388774a4c83858603e45342adbbecd6",
+      "canonical_source_sha256": "d1509cd3e55d7c4c4fa080e4f5f83721577217e72e17a976330fc11c93b6dbb1",
+      "canonical_source_sha256_normalized": "de93596d4662a8693350c166a549b25de012d06e1daccd03d8eaabaf4d69b053",
       "reference_role": "semantic_source",
       "required_for_core_operation": false,
       "source_of_truth": false,
       "update_strategy": "remote_context_review",
       "license_scope": "external_terms",
-      "omission_rationale": "Large, mutable semantic index; not required for core runtime and no package-wide license is inferred."
+      "omission_rationale": "Large, mutable semantic index; not required for core runtime and no package-wide license is inferred.",
+      "source_provenance": "user_supplied_v7.4_snapshot_not_bundled"
     },
     {
       "reference_id": "AUR-015",
@@ -175,6 +179,21 @@
       "update_strategy": "external_reference_only",
       "license_scope": "external_or_proprietary",
       "omission_rationale": "Separate product and runtime; not reproduced."
+    },
+    {
+      "reference_id": "AUR-025",
+      "name": "Resonanzkreis / Resonance Cycle",
+      "embedded": false,
+      "embedded_path": null,
+      "canonical_url": "https://stephanadavis.de/perspektivensystemik/resonanzkreis/",
+      "reference_role": "semantic_source",
+      "required_for_core_operation": false,
+      "source_of_truth": false,
+      "update_strategy": "optional_external_reference",
+      "license_scope": "external_terms",
+      "cataloged_optional_reference": true,
+      "catalog_path": "OPTIONAL-SEMANTIC-REFERENCES.json",
+      "omission_rationale": "Optional reflection/action/feedback context in Core v2.5; no methodology embedded or relicensed."
     }
   ]
 }
