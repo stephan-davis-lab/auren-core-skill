@@ -1,0 +1,182 @@
+{
+  "report_version": "1.1",
+  "checked_at": "2026-10-10T15:44:25+00:00",
+  "registry_version": "1.5",
+  "automatic_activation": false,
+  "privacy": {
+    "user_content_sent": false,
+    "request_method": "GET",
+    "crawl_discovered_links": false
+  },
+  "sources": [
+    {
+      "source_id": "ai_index",
+      "role": "semantic_context",
+      "fetch_status": "success",
+      "baseline": {
+        "version": "7.4",
+        "sha256": "d1509cd3e55d7c4c4fa080e4f5f83721577217e72e17a976330fc11c93b6dbb1",
+        "sha256_normalized": "de93596d4662a8693350c166a549b25de012d06e1daccd03d8eaabaf4d69b053"
+      },
+      "retrievals": [
+        {
+          "url": "https://stephanadavis.de/ai-index.txt",
+          "status": "success",
+          "bytes": 265840,
+          "sha256": "d1509cd3e55d7c4c4fa080e4f5f83721577217e72e17a976330fc11c93b6dbb1",
+          "sha256_normalized": "de93596d4662a8693350c166a549b25de012d06e1daccd03d8eaabaf4d69b053",
+          "version": "7.4",
+          "license": "CC BY-SA 4.0",
+          "validation_error": null
+        }
+      ],
+      "automatic_activation": false,
+      "remote": {
+        "version": "7.4",
+        "sha256": "d1509cd3e55d7c4c4fa080e4f5f83721577217e72e17a976330fc11c93b6dbb1",
+        "sha256_normalized": "de93596d4662a8693350c166a549b25de012d06e1daccd03d8eaabaf4d69b053",
+        "license": "CC BY-SA 4.0"
+      },
+      "classification": "no_change",
+      "operational_impact": "none",
+      "license_impact": "none_detected",
+      "required_evals": [],
+      "recommendation": "No adoption action required."
+    },
+    {
+      "source_id": "core_readme",
+      "role": "documentation_and_semantics",
+      "fetch_status": "success",
+      "baseline": {
+        "version": "2.5",
+        "sha256": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
+        "sha256_normalized": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3"
+      },
+      "retrievals": [
+        {
+          "url": "https://stephanadavis.de/README_v2.5.md",
+          "status": "success",
+          "bytes": 8355,
+          "sha256": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
+          "sha256_normalized": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
+          "version": "2.5",
+          "license": "CC BY-SA 4.0",
+          "validation_error": null
+        }
+      ],
+      "automatic_activation": false,
+      "remote": {
+        "version": "2.5",
+        "sha256": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
+        "sha256_normalized": "89a97c2e2581fde0dcc32e8c53657875cde1abf4a7ce8cfbffd8b9ff02e2b5c3",
+        "license": "CC BY-SA 4.0"
+      },
+      "classification": "no_change",
+      "operational_impact": "none",
+      "license_impact": "none_detected",
+      "required_evals": [],
+      "recommendation": "No adoption action required."
+    },
+    {
+      "source_id": "core_logic",
+      "role": "operational_narrative",
+      "fetch_status": "unavailable",
+      "baseline": {
+        "version": "2.5",
+        "sha256": "e2335c3bb91069267e3f9bce0d40f3b61e0f02135d2c5b08bcb16758b82aa3ee",
+        "sha256_normalized": "1a93ebbbe08212bb8dd53868fb063eafa28590098bbce087241ed1cab433f445"
+      },
+      "retrievals": [
+        {
+          "url": "https://raw.githubusercontent.com/stephan-davis-lab/auren-core-specs/v2.5/auren-core-logic_v2.5.md",
+          "status": "unavailable",
+          "error": "ValueError: Manual-only pinned reference outside the fixed checker allowlist; no network request made"
+        }
+      ],
+      "automatic_activation": false,
+      "classification": "fetch_unavailable",
+      "operational_impact": "unknown",
+      "license_impact": "unknown",
+      "required_evals": [],
+      "recommendation": "Keep the embedded approved source active and do not claim currentness."
+    },
+    {
+      "source_id": "core_specs",
+      "role": "operational_source_of_truth",
+      "fetch_status": "success",
+      "baseline": {
+        "version": "2.5",
+        "sha256": "5312902111108831a259034a48af93b459a90eaa4364f5f7076ef1ff9a4fba9c",
+        "sha256_normalized": "f9abb30b0f27b2718a77d78cf07505b8c905da5ba60472350df36031bdc007f3"
+      },
+      "retrievals": [
+        {
+          "url": "https://stephanadavis.de/auren-core-specs_v2.5.yaml.txt",
+          "status": "success",
+          "bytes": 46623,
+          "sha256": "5312902111108831a259034a48af93b459a90eaa4364f5f7076ef1ff9a4fba9c",
+          "sha256_normalized": "f9abb30b0f27b2718a77d78cf07505b8c905da5ba60472350df36031bdc007f3",
+          "version": "2.5",
+          "license": "CC BY-SA 4.0",
+          "validation_error": null
+        },
+        {
+          "url": "https://stephanadavis.de/auren-core-specs.yaml.txt",
+          "status": "success",
+          "bytes": 46623,
+          "sha256": "5312902111108831a259034a48af93b459a90eaa4364f5f7076ef1ff9a4fba9c",
+          "sha256_normalized": "f9abb30b0f27b2718a77d78cf07505b8c905da5ba60472350df36031bdc007f3",
+          "version": "2.5",
+          "license": "CC BY-SA 4.0",
+          "validation_error": null
+        }
+      ],
+      "automatic_activation": false,
+      "remote": {
+        "version": "2.5",
+        "sha256": "5312902111108831a259034a48af93b459a90eaa4364f5f7076ef1ff9a4fba9c",
+        "sha256_normalized": "f9abb30b0f27b2718a77d78cf07505b8c905da5ba60472350df36031bdc007f3",
+        "license": "CC BY-SA 4.0"
+      },
+      "classification": "no_change",
+      "operational_impact": "none",
+      "license_impact": "none_detected",
+      "required_evals": [],
+      "recommendation": "No adoption action required."
+    },
+    {
+      "source_id": "guidance",
+      "role": "supplementary_orientation_policy",
+      "fetch_status": "success",
+      "baseline": {
+        "version": "2.5",
+        "sha256": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
+        "sha256_normalized": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee"
+      },
+      "retrievals": [
+        {
+          "url": "https://stephanadavis.de/Guidance4AIsystems_v2.5.txt",
+          "status": "success",
+          "bytes": 9245,
+          "sha256": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
+          "sha256_normalized": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
+          "version": "2.5",
+          "license": "CC BY-SA 4.0",
+          "validation_error": null
+        }
+      ],
+      "automatic_activation": false,
+      "remote": {
+        "version": "2.5",
+        "sha256": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
+        "sha256_normalized": "a1bbd868eeb2af8fd13df41dcc333a2fdd012d0c9d0e37eef5d375a27158deee",
+        "license": "CC BY-SA 4.0"
+      },
+      "classification": "no_change",
+      "operational_impact": "none",
+      "license_impact": "none_detected",
+      "required_evals": [],
+      "recommendation": "No adoption action required."
+    }
+  ]
+}

@@ -11,12 +11,10 @@ Release evidence records what was actually validated for a specific AUREN Core S
 5. **Behavioral host evidence** may be added only after the eval cases have actually been executed on named hosts and models.
 6. **Manual review** records qualitative review scope without representing it as model execution.
 
-## Version 1.1.2
+## Version 1.2.5
 
-`release-evidence-v1.1.2.json` records the build-time evidence for this patch-level Open Edition release. The complete record is structurally validated against release-evidence schema version 1.4. Package validation additionally enforces temporal evidence consistency: the final `generated_at` timestamp must be greater than or equal to every recorded `evaluation_runs[*].executed_at` timestamp. A complete checker-generated source-update report is separately validated against update-report schema version 1.1. Direct requests and redirect targets share one full URL-validation path, including query, fragment, hostname, scheme, and standard-port enforcement. Behavioral model and host evidence remains explicitly marked `not_run`.
+`release-evidence-v1.2.5.json` records the checks performed for this Core 2.5 Skill integration. Read its per-run status and evidence references. The unchanged upstream private-integration summary is separate historical evidence; none of its model runs counts as execution of this Skill revision.
 
-## Future host evidence
+Bounded fresh-context synthetic probes, when recorded, constitute partial behavioral evidence with original prompts and outputs. Their exact internal model and host versions may be unavailable and must be marked unknown. They do not replace execution of the full bilingual Skill inventories or all 45 canonical Core cases on target hosts.
 
-For each actual host or model run, record the host and model identifiers, versions, execution time, number of cases, pass/fail/manual-review outcomes, and an evidence reference. Do not replace failed or partial outcomes with a narrative success claim.
-
-Version 1.1.2 preserves the v1.1.0 optional semantic-reference and URL/security assurance, carries forward the v1.1.1 evidence/artifact alignment guards, and adds a temporal guard so a final evidence record cannot claim to have been generated before the runs it records.
+Evidence timestamps, current SKILL.md line count, source identity, catalog count and inventory versions must match the final artifact. Keep evaluation material outside operational runtime loading.
